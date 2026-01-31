@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astrophotography Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .container {
+            max-width: 800px;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #4a9eff, #2a5eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .subtitle {
+            font-size: 1.2em;
+            color: #888;
+            margin-bottom: 40px;
+        }
+        .stats {
+            font-size: 2em;
+            margin: 30px 0;
+            color: #4a9eff;
+        }
+        .gallery-links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 40px 0;
+        }
+        .gallery-card {
+            background: #1a1a1a;
+            border: 2px solid #333;
+            border-radius: 12px;
+            padding: 30px;
+            min-width: 250px;
+            text-decoration: none;
+            color: #fff;
+            transition: all 0.3s;
+        }
+        .gallery-card:hover {
+            border-color: #4a9eff;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(74, 158, 255, 0.3);
+        }
+        .gallery-card h2 {
+            margin: 0 0 10px 0;
+            color: #4a9eff;
+        }
+        .gallery-card p {
+            margin: 0;
+            color: #aaa;
+            font-size: 0.9em;
+        }
+        .footer {
+            margin-top: 60px;
+            color: #666;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌌 Astrophotography Gallery</h1>
+        <div class="subtitle">Deep Sky Object Collection</div>
+
+        <div class="stats">
+            <strong>17</strong> of <strong>110</strong> Messier Objects
+        </div>
+
+        <div class="gallery-links">
+            <a href="messier_catalog.html" class="gallery-card">
+                <h2>Messier Catalog</h2>
+                <p>Grid view of all 110 Messier objects with capture progress</p>
+            </a>
+
+            <a href="messier_ra_chart.html" class="gallery-card">
+                <h2>RA Chart</h2>
+                <p>Objects organized by Right Ascension for observation planning</p>
+            </a>
+        </div>
+
+        <div class="footer">
+            Captured with Seestar S30
+        </div>
+    </div>
+</body>
+</html>
