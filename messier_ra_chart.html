@@ -16,6 +16,23 @@
             text-align: center;
             margin-bottom: 10px;
         }
+        .filter-box {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+        .filter-box input {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            border: 2px solid #4a9eff;
+            border-radius: 5px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .filter-box input:focus {
+            outline: none;
+            border-color: #6bb6ff;
+        }
         .stats {
             text-align: center;
             margin-bottom: 20px;
@@ -213,6 +230,9 @@
 </head>
 <body>
     <h1>Messier Catalog by Right Ascension</h1>
+    <div class="filter-box">
+        <input type="text" id="filterInput" placeholder="Filter objects (e.g., M31, Galaxy, Nebula)..." onkeyup="filterObjects()">
+    </div>
     <div class="stats">
         <strong>17</strong> of <strong>110</strong> objects captured (15.5%)
         <br>
@@ -506,7 +526,7 @@
                 <div class="messier-number">M48</div>
                 <div class="messier-name">Open Cluster</div>
                 <div class="coords">RA 8h13m, Dec -5°</div>
-                <img src="targets/clusters/m48/Stacked_108_M 48_10.0s_IRCUT_20260126-201322.jpg" class="thumbnail" alt="M48" onclick="openModal('targets/clusters/m48/Stacked_108_M 48_10.0s_IRCUT_20260126-201322.jpg')" style="cursor: pointer;">
+                <img src="targets/clusters/m48/m48_2026-01-30.png" class="thumbnail" alt="M48" onclick="openModal('targets/clusters/m48/m48_2026-01-30.png')" style="cursor: pointer;">
             </div>
         </div>
         <div class="ra-column" data-ra="9">
@@ -1091,6 +1111,25 @@
 
         // Apply initial order
         reorderColumns();
+
+        // Filter function
+        function filterObjects() {
+            const filter = document.getElementById('filterInput').value.toLowerCase();
+            const items = document.querySelectorAll('.messier-item');
+
+            items.forEach(item => {
+                const number = item.querySelector('.messier-number').textContent.toLowerCase();
+                const name = item.querySelector('.messier-name').textContent.toLowerCase();
+                const text = number + ' ' + name;
+
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        window.filterObjects = filterObjects;
     </script>
 </body>
 </html>

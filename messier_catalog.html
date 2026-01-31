@@ -16,6 +16,23 @@
             text-align: center;
             margin-bottom: 10px;
         }
+        .filter-box {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .filter-box input {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            border: 2px solid #4a9eff;
+            border-radius: 5px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .filter-box input:focus {
+            outline: none;
+            border-color: #6bb6ff;
+        }
         .stats {
             text-align: center;
             margin-bottom: 30px;
@@ -79,6 +96,9 @@
 </head>
 <body>
     <h1>Messier Catalog Progress</h1>
+    <div class="filter-box">
+        <input type="text" id="filterInput" placeholder="Filter objects (e.g., M31, Galaxy, Nebula)..." onkeyup="filterGallery()">
+    </div>
     <div class="stats">
         <strong>17</strong> of <strong>110</strong> objects captured (15.5%)
     </div>
@@ -415,7 +435,7 @@
         <div class="messier-card captured">
             <h3>M48 - Open Cluster</h3>
             <div class="image-container">
-                <a href="targets/clusters/m48/Stacked_108_M 48_10.0s_IRCUT_20260126-201322.jpg" target="_blank"><img src="targets/clusters/m48/Stacked_108_M 48_10.0s_IRCUT_20260126-201322.jpg" alt="M48 - Open Cluster"></a>
+                <a href="targets/clusters/m48/m48_2026-01-30.png" target="_blank"><img src="targets/clusters/m48/m48_2026-01-30.png" alt="M48 - Open Cluster"></a>
             </div>
             <div class="status">✓ Captured</div>
         </div>
@@ -854,5 +874,20 @@
             <div class="status not-captured">Not yet captured</div>
         </div>
     </div>
+    <script>
+        function filterGallery() {
+            const filter = document.getElementById('filterInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.messier-card');
+
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                if (title.includes(filter)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
