@@ -2,12 +2,43 @@
 import os
 import re
 from pathlib import Path
+from urllib.parse import quote
 
 # Find all stacked Messier images
 def find_messier_images():
     messier_images = {}
 
-    # Search for stacked images
+    # Priority 1: Look for final processed PNG files (M##_YYYY-MM-DD.png or M##.png)
+    all_pngs = list(Path('targets').rglob('M*.png')) + list(Path('targets').rglob('m*.png'))
+    for png in all_pngs:
+        # Try to match dated pattern first: M31_2026-01-30.png
+        match = re.search(r'M(\d{1,3})_(\d{4}-\d{2}-\d{2})\.png$', str(png), re.IGNORECASE)
+        if match:
+            m_num = int(match.group(1))
+            date_str = match.group(2)
+
+            # Only accept valid Messier numbers (1-110)
+            if m_num < 1 or m_num > 110:
+                continue
+
+            # Keep the most recent date (highest date string)
+            if m_num not in messier_images or date_str > messier_images[m_num][1]:
+                messier_images[m_num] = (str(png), date_str, 'png')
+        else:
+            # Try undated pattern: M33.png
+            match = re.search(r'M(\d{1,3})\.png$', str(png), re.IGNORECASE)
+            if match:
+                m_num = int(match.group(1))
+
+                # Only accept valid Messier numbers (1-110)
+                if m_num < 1 or m_num > 110:
+                    continue
+
+                # Only use if we don't already have a dated PNG
+                if m_num not in messier_images or messier_images[m_num][2] != 'png':
+                    messier_images[m_num] = (str(png), '0000-00-00', 'png')
+
+    # Priority 2: Fallback to stacked JPG images (only if no PNG exists)
     for jpg in Path('targets').rglob('Stacked_*M*.jpg'):
         if '_thn.jpg' in str(jpg):
             continue
@@ -19,13 +50,17 @@ def find_messier_images():
             if m_num < 1 or m_num > 110:
                 continue
 
+            # Skip if we already have a PNG for this object
+            if m_num in messier_images and messier_images[m_num][2] == 'png':
+                continue
+
             # Extract stack count
             stack_match = re.search(r'Stacked_(\d+)_', str(jpg))
             stack_count = int(stack_match.group(1)) if stack_match else 0
 
             # Keep the highest stack count image
             if m_num not in messier_images or stack_count > messier_images[m_num][1]:
-                messier_images[m_num] = (str(jpg), stack_count)
+                messier_images[m_num] = (str(jpg), stack_count, 'jpg')
 
     return {k: v[0] for k, v in messier_images.items()}
 
@@ -185,6 +220,23 @@ def generate_ra_chart_html():
             text-align: center;
             margin-bottom: 10px;
         }}
+        .filter-box {{
+            text-align: center;
+            margin-bottom: 15px;
+        }}
+        .filter-box input {{
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            border: 2px solid #4a9eff;
+            border-radius: 5px;
+            background: #1a1a1a;
+            color: #fff;
+        }}
+        .filter-box input:focus {{
+            outline: none;
+            border-color: #6bb6ff;
+        }}
         .stats {{
             text-align: center;
             margin-bottom: 20px;
@@ -328,6 +380,46 @@ def generate_ra_chart_html():
             font-size: 2em;
             margin-top: 5px;
         }}
+        .controls {{
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }}
+        .control-group {{
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }}
+        .control-group label {{
+            color: #888;
+            font-size: 0.9em;
+        }}
+        select, button {{
+            background: #1a1a1a;
+            color: #fff;
+            border: 2px solid #333;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }}
+        select:hover, button:hover {{
+            border-color: #4a9eff;
+        }}
+        select:focus, button:focus {{
+            outline: none;
+            border-color: #4a9eff;
+        }}
+        button {{
+            padding: 8px 16px;
+        }}
+        button:active {{
+            transform: scale(0.98);
+        }}
         @media (max-width: 1400px) {{
             .ra-grid {{
                 grid-template-columns: repeat(12, 1fr);
@@ -338,14 +430,68 @@ def generate_ra_chart_html():
                 grid-template-columns: repeat(6, 1fr);
             }}
         }}
+        .nav-home {{
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: #1a1a1a;
+            border: 2px solid #4a9eff;
+            border-radius: 5px;
+            color: #4a9eff;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: all 0.2s;
+            z-index: 100;
+        }}
+        .nav-home:hover {{
+            background: #4a9eff;
+            color: #000;
+        }}
     </style>
 </head>
 <body>
+    <a href="index.html" class="nav-home">← Home</a>
     <h1>Messier Catalog by Right Ascension</h1>
+    <div class="filter-box">
+        <input type="text" id="filterInput" placeholder="Filter objects (e.g., M31, Galaxy, Nebula)..." onkeyup="filterObjects()">
+    </div>
     <div class="stats">
         <strong>{captured}</strong> of <strong>110</strong> objects captured ({percent}%)
         <br>
         <span style="font-size: 0.8em; color: #888;">24 columns for RA hours 0-23, sorted by declination (north at top)</span>
+    </div>
+    <div class="controls">
+        <div class="control-group">
+            <label for="startRA">Start RA:</label>
+            <select id="startRA">
+                <option value="0">0h</option>
+                <option value="1">1h</option>
+                <option value="2">2h</option>
+                <option value="3">3h</option>
+                <option value="4">4h</option>
+                <option value="5">5h</option>
+                <option value="6">6h</option>
+                <option value="7">7h</option>
+                <option value="8">8h</option>
+                <option value="9">9h</option>
+                <option value="10">10h</option>
+                <option value="11">11h</option>
+                <option value="12">12h</option>
+                <option value="13">13h</option>
+                <option value="14">14h</option>
+                <option value="15">15h</option>
+                <option value="16">16h</option>
+                <option value="17">17h</option>
+                <option value="18">18h</option>
+                <option value="19">19h</option>
+                <option value="20" selected>20h</option>
+                <option value="21">21h</option>
+                <option value="22">22h</option>
+                <option value="23">23h</option>
+            </select>
+        </div>
+        <button id="reverseBtn">↔ Reverse Order</button>
     </div>
     <div class="scroll-wrapper-top" id="scrollTop">
         <div class="scroll-content-top" id="scrollContentTop"></div>
@@ -357,7 +503,7 @@ def generate_ra_chart_html():
     hour_order = list(range(20, 24)) + list(range(0, 20))
 
     for hour in hour_order:
-        html += f"""        <div class="ra-column">
+        html += f"""        <div class="ra-column" data-ra="{hour}">
             <div class="ra-header">RA {hour}h</div>
 """
         for obj in ra_columns[hour]:
@@ -379,7 +525,8 @@ def generate_ra_chart_html():
             coord_str = f"RA {ra_h}h{ra_m}m, Dec {dec_sign}{int(dec)}°"
 
             if image_path:
-                img_html = f'<img src="{image_path}" class="thumbnail" alt="M{m_num}" onclick="openModal(\'{image_path}\')" style="cursor: pointer;">'
+                image_path_encoded = quote(image_path)
+                img_html = f'<img src="{image_path_encoded}" class="thumbnail" alt="M{m_num}" onclick="openModal(\'{image_path_encoded}\')" style="cursor: pointer;">'
             else:
                 img_html = '<div class="placeholder">?</div>'
 
@@ -446,6 +593,78 @@ def generate_ra_chart_html():
                 closeModal();
             }
         });
+
+        // RA Column Ordering
+        let isReversed = localStorage.getItem('raReversed') === 'true' || false;
+        let startRA = parseInt(localStorage.getItem('raStart') || '20');
+
+        // Set initial values
+        document.getElementById('startRA').value = startRA;
+
+        function reorderColumns() {
+            const grid = document.getElementById('raGrid');
+            const columns = Array.from(grid.querySelectorAll('.ra-column'));
+
+            // Create order array
+            let order = [];
+            for (let i = 0; i < 24; i++) {
+                order.push((startRA + i) % 24);
+            }
+
+            // Reverse if needed
+            if (isReversed) {
+                order.reverse();
+            }
+
+            // Sort columns by order
+            columns.sort((a, b) => {
+                const raA = parseInt(a.dataset.ra);
+                const raB = parseInt(b.dataset.ra);
+                return order.indexOf(raA) - order.indexOf(raB);
+            });
+
+            // Reappend in new order
+            columns.forEach(col => grid.appendChild(col));
+
+            // Update scroll width
+            updateScrollWidth();
+        }
+
+        // Start RA selector
+        document.getElementById('startRA').addEventListener('change', function() {
+            startRA = parseInt(this.value);
+            localStorage.setItem('raStart', startRA);
+            reorderColumns();
+        });
+
+        // Reverse button
+        document.getElementById('reverseBtn').addEventListener('click', function() {
+            isReversed = !isReversed;
+            localStorage.setItem('raReversed', isReversed);
+            reorderColumns();
+        });
+
+        // Apply initial order
+        reorderColumns();
+
+        // Filter function
+        function filterObjects() {
+            const filter = document.getElementById('filterInput').value.toLowerCase();
+            const items = document.querySelectorAll('.messier-item');
+
+            items.forEach(item => {
+                const number = item.querySelector('.messier-number').textContent.toLowerCase();
+                const name = item.querySelector('.messier-name').textContent.toLowerCase();
+                const text = number + ' ' + name;
+
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+        window.filterObjects = filterObjects;
     </script>
 </body>
 </html>

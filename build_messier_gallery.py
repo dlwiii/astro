@@ -2,23 +2,57 @@
 import os
 import re
 from pathlib import Path
+from urllib.parse import quote
 
 # Find all stacked Messier images
 def find_messier_images():
     messier_images = {}
 
-    # Search for stacked images
+    # Priority 1: Look for final processed PNG files (M##_YYYY-MM-DD.png or M##.png)
+    all_pngs = list(Path('targets').rglob('M*.png')) + list(Path('targets').rglob('m*.png'))
+    for png in all_pngs:
+        # Try to match dated pattern first: M31_2026-01-30.png
+        match = re.search(r'M(\d{1,3})_(\d{4}-\d{2}-\d{2})\.png$', str(png), re.IGNORECASE)
+        if match:
+            m_num = int(match.group(1))
+            date_str = match.group(2)
+
+            # Only accept valid Messier numbers (1-110)
+            if m_num < 1 or m_num > 110:
+                continue
+
+            # Keep the most recent date (highest date string)
+            if m_num not in messier_images or date_str > messier_images[m_num][1]:
+                messier_images[m_num] = (str(png), date_str, 'png')
+        else:
+            # Try undated pattern: M33.png
+            match = re.search(r'M(\d{1,3})\.png$', str(png), re.IGNORECASE)
+            if match:
+                m_num = int(match.group(1))
+
+                # Only accept valid Messier numbers (1-110)
+                if m_num < 1 or m_num > 110:
+                    continue
+
+                # Only use if we don't already have a dated PNG
+                if m_num not in messier_images or messier_images[m_num][2] != 'png':
+                    messier_images[m_num] = (str(png), '0000-00-00', 'png')
+
+    # Priority 2: Fallback to stacked JPG images (only if no PNG exists)
     for jpg in Path('targets').rglob('Stacked_*M*.jpg'):
         if '_thn.jpg' in str(jpg):
             continue
 
         # Extract Messier number from filename
-        # Look for M followed by space and 1-3 digits, with proper delimiters
         match = re.search(r'[_\s]M\s+(\d{1,3})[\s_\.]', str(jpg), re.IGNORECASE)
         if match:
             m_num = int(match.group(1))
             # Only accept valid Messier numbers (1-110)
             if m_num < 1 or m_num > 110:
+                continue
+
+            # Skip if we already have a PNG for this object
+            if m_num in messier_images and messier_images[m_num][2] == 'png':
                 continue
 
             # Extract stack count
@@ -27,7 +61,7 @@ def find_messier_images():
 
             # Keep the highest stack count image
             if m_num not in messier_images or stack_count > messier_images[m_num][1]:
-                messier_images[m_num] = (str(jpg), stack_count)
+                messier_images[m_num] = (str(jpg), stack_count, 'jpg')
 
     return {k: v[0] for k, v in messier_images.items()}
 
@@ -95,6 +129,23 @@ def generate_html():
             text-align: center;
             margin-bottom: 10px;
         }}
+        .filter-box {{
+            text-align: center;
+            margin-bottom: 20px;
+        }}
+        .filter-box input {{
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            border: 2px solid #4a9eff;
+            border-radius: 5px;
+            background: #1a1a1a;
+            color: #fff;
+        }}
+        .filter-box input:focus {{
+            outline: none;
+            border-color: #6bb6ff;
+        }}
         .stats {{
             text-align: center;
             margin-bottom: 30px;
@@ -154,10 +205,32 @@ def generate_html():
         .status.not-captured {{
             color: #666;
         }}
+        .nav-home {{
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: #1a1a1a;
+            border: 2px solid #4a9eff;
+            border-radius: 5px;
+            color: #4a9eff;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: all 0.2s;
+            z-index: 100;
+        }}
+        .nav-home:hover {{
+            background: #4a9eff;
+            color: #000;
+        }}
     </style>
 </head>
 <body>
+    <a href="index.html" class="nav-home">← Home</a>
     <h1>Messier Catalog Progress</h1>
+    <div class="filter-box">
+        <input type="text" id="filterInput" placeholder="Filter objects (e.g., M31, Galaxy, Nebula)..." onkeyup="filterGallery()">
+    </div>
     <div class="stats">
         <strong>{captured}</strong> of <strong>110</strong> objects captured ({percent}%)
     </div>
@@ -169,8 +242,9 @@ def generate_html():
 
         if m_num in images:
             img_path = images[m_num]
+            img_path_encoded = quote(img_path)
             card_class = "messier-card captured"
-            img_html = f'<a href="{img_path}" target="_blank"><img src="{img_path}" alt="{name}"></a>'
+            img_html = f'<a href="{img_path_encoded}" target="_blank"><img src="{img_path_encoded}" alt="{name}"></a>'
             status = '<div class="status">✓ Captured</div>'
         else:
             card_class = "messier-card"
@@ -187,6 +261,21 @@ def generate_html():
 """
 
     html += """    </div>
+    <script>
+        function filterGallery() {
+            const filter = document.getElementById('filterInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.messier-card');
+
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                if (title.includes(filter)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
 """

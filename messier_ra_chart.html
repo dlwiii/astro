@@ -226,15 +226,34 @@
                 grid-template-columns: repeat(6, 1fr);
             }
         }
+        .nav-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: #1a1a1a;
+            border: 2px solid #4a9eff;
+            border-radius: 5px;
+            color: #4a9eff;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: all 0.2s;
+            z-index: 100;
+        }
+        .nav-home:hover {
+            background: #4a9eff;
+            color: #000;
+        }
     </style>
 </head>
 <body>
+    <a href="index.html" class="nav-home">← Home</a>
     <h1>Messier Catalog by Right Ascension</h1>
     <div class="filter-box">
         <input type="text" id="filterInput" placeholder="Filter objects (e.g., M31, Galaxy, Nebula)..." onkeyup="filterObjects()">
     </div>
     <div class="stats">
-        <strong>17</strong> of <strong>110</strong> objects captured (15.5%)
+        <strong>24</strong> of <strong>110</strong> objects captured (21.8%)
         <br>
         <span style="font-size: 0.8em; color: #888;">24 columns for RA hours 0-23, sorted by declination (north at top)</span>
     </div>
@@ -313,7 +332,7 @@
                 <div class="messier-number">M15</div>
                 <div class="messier-name">Globular Cluster</div>
                 <div class="coords">RA 21h30m, Dec +12°</div>
-                <img src="targets/clusters/m15/2025-12-27/Stacked_73_M 15_10.0s_IRCUT_20251227-183234.jpg" class="thumbnail" alt="M15" onclick="openModal('targets/clusters/m15/2025-12-27/Stacked_73_M 15_10.0s_IRCUT_20251227-183234.jpg')" style="cursor: pointer;">
+                <img src="targets/clusters/m15/2025-12-27/Stacked_73_M%2015_10.0s_IRCUT_20251227-183234.jpg" class="thumbnail" alt="M15" onclick="openModal('targets/clusters/m15/2025-12-27/Stacked_73_M%2015_10.0s_IRCUT_20251227-183234.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item">
                 <div class="messier-number">M2</div>
@@ -367,7 +386,7 @@
                 <div class="messier-number">M103</div>
                 <div class="messier-name">Open Cluster</div>
                 <div class="coords">RA 1h33m, Dec +60°</div>
-                <img src="targets/clusters/m103/Stacked_65_M 103_10.0s_IRCUT_20260127-195407.jpg" class="thumbnail" alt="M103" onclick="openModal('targets/clusters/m103/Stacked_65_M 103_10.0s_IRCUT_20260127-195407.jpg')" style="cursor: pointer;">
+                <img src="targets/clusters/m103/Stacked_65_M%20103_10.0s_IRCUT_20260127-195407.jpg" class="thumbnail" alt="M103" onclick="openModal('targets/clusters/m103/Stacked_65_M%20103_10.0s_IRCUT_20260127-195407.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M76</div>
@@ -381,26 +400,26 @@
                 <div class="coords">RA 1h33m, Dec +30°</div>
                 <img src="targets/galaxies/m33/2025-12-25/m33_2025-12-30.png" class="thumbnail" alt="M33" onclick="openModal('targets/galaxies/m33/2025-12-25/m33_2025-12-30.png')" style="cursor: pointer;">
             </div>
-            <div class="messier-item">
+            <div class="messier-item captured">
                 <div class="messier-number">M74</div>
                 <div class="messier-name">Spiral Galaxy</div>
                 <div class="coords">RA 1h36m, Dec +15°</div>
-                <div class="placeholder">?</div>
+                <img src="targets/galaxies/m74/m74_2026-01-30.png" class="thumbnail" alt="M74" onclick="openModal('targets/galaxies/m74/m74_2026-01-30.png')" style="cursor: pointer;">
             </div>
         </div>
         <div class="ra-column" data-ra="2">
             <div class="ra-header">RA 2h</div>
-            <div class="messier-item">
+            <div class="messier-item captured">
                 <div class="messier-number">M34</div>
                 <div class="messier-name">Open Cluster</div>
                 <div class="coords">RA 2h42m, Dec +42°</div>
-                <div class="placeholder">?</div>
+                <img src="targets/clusters/m34/Stacked_55_M%2034_10.0s_IRCUT_20260130-212519.jpg" class="thumbnail" alt="M34" onclick="openModal('targets/clusters/m34/Stacked_55_M%2034_10.0s_IRCUT_20260130-212519.jpg')" style="cursor: pointer;">
             </div>
-            <div class="messier-item">
+            <div class="messier-item captured">
                 <div class="messier-number">M77</div>
                 <div class="messier-name">Spiral Galaxy</div>
                 <div class="coords">RA 2h42m, Dec 0°</div>
-                <div class="placeholder">?</div>
+                <img src="targets/galaxies/m77/Stacked_6_M%2077_10.0s_IRCUT_20260130-213529.jpg" class="thumbnail" alt="M77" onclick="openModal('targets/galaxies/m77/Stacked_6_M%2077_10.0s_IRCUT_20260130-213529.jpg')" style="cursor: pointer;">
             </div>
         </div>
         <div class="ra-column" data-ra="3">
@@ -433,7 +452,7 @@
                 <div class="messier-number">M37</div>
                 <div class="messier-name">Open Cluster</div>
                 <div class="coords">RA 5h52m, Dec +32°</div>
-                <img src="targets/clusters/m37/Stacked_34_M 37_10.0s_IRCUT_20260126-190605.jpg" class="thumbnail" alt="M37" onclick="openModal('targets/clusters/m37/Stacked_34_M 37_10.0s_IRCUT_20260126-190605.jpg')" style="cursor: pointer;">
+                <img src="targets/clusters/m37/Stacked_34_M%2037_10.0s_IRCUT_20260126-190605.jpg" class="thumbnail" alt="M37" onclick="openModal('targets/clusters/m37/Stacked_34_M%2037_10.0s_IRCUT_20260126-190605.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M1</div>
@@ -459,11 +478,11 @@
                 <div class="coords">RA 5h35m, Dec -5°</div>
                 <img src="targets/nebulae/m42/m42_2026-01-21.png" class="thumbnail" alt="M42" onclick="openModal('targets/nebulae/m42/m42_2026-01-21.png')" style="cursor: pointer;">
             </div>
-            <div class="messier-item">
+            <div class="messier-item captured">
                 <div class="messier-number">M79</div>
                 <div class="messier-name">Globular Cluster</div>
                 <div class="coords">RA 5h24m, Dec -24°</div>
-                <div class="placeholder">?</div>
+                <img src="targets/clusters/m79/Stacked_20_M%2079_10.0s_IRCUT_20260129-194638.jpg" class="thumbnail" alt="M79" onclick="openModal('targets/clusters/m79/Stacked_20_M%2079_10.0s_IRCUT_20260129-194638.jpg')" style="cursor: pointer;">
             </div>
         </div>
         <div class="ra-column" data-ra="6">
@@ -474,11 +493,11 @@
                 <div class="coords">RA 6h8m, Dec +24°</div>
                 <img src="targets/clusters/m35/m35_2026-01-23.png" class="thumbnail" alt="M35" onclick="openModal('targets/clusters/m35/m35_2026-01-23.png')" style="cursor: pointer;">
             </div>
-            <div class="messier-item">
+            <div class="messier-item captured">
                 <div class="messier-number">M41</div>
                 <div class="messier-name">Open Cluster</div>
                 <div class="coords">RA 6h46m, Dec -20°</div>
-                <div class="placeholder">?</div>
+                <img src="targets/clusters/m41/Stacked_4_M%2041_10.0s_IRCUT_20260126-220904.jpg" class="thumbnail" alt="M41" onclick="openModal('targets/clusters/m41/Stacked_4_M%2041_10.0s_IRCUT_20260126-220904.jpg')" style="cursor: pointer;">
             </div>
         </div>
         <div class="ra-column" data-ra="7">
@@ -489,17 +508,17 @@
                 <div class="coords">RA 7h3m, Dec -8°</div>
                 <div class="placeholder">?</div>
             </div>
-            <div class="messier-item">
+            <div class="messier-item captured">
                 <div class="messier-number">M47</div>
                 <div class="messier-name">Open Cluster</div>
                 <div class="coords">RA 7h36m, Dec -14°</div>
-                <div class="placeholder">?</div>
+                <img src="targets/clusters/m47/Stacked_13_M%2047_10.0s_IRCUT_20260126-192239.jpg" class="thumbnail" alt="M47" onclick="openModal('targets/clusters/m47/Stacked_13_M%2047_10.0s_IRCUT_20260126-192239.jpg')" style="cursor: pointer;">
             </div>
-            <div class="messier-item">
+            <div class="messier-item captured">
                 <div class="messier-number">M46</div>
                 <div class="messier-name">Open Cluster</div>
                 <div class="coords">RA 7h41m, Dec -14°</div>
-                <div class="placeholder">?</div>
+                <img src="targets/clusters/m46/Stacked_4_M%2046_10.0s_IRCUT_20260126-221207.jpg" class="thumbnail" alt="M46" onclick="openModal('targets/clusters/m46/Stacked_4_M%2046_10.0s_IRCUT_20260126-221207.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item">
                 <div class="messier-number">M93</div>
@@ -541,7 +560,7 @@
                 <div class="messier-number">M81</div>
                 <div class="messier-name">Bode's Galaxy</div>
                 <div class="coords">RA 9h55m, Dec +69°</div>
-                <img src="targets/galaxies/m81/Stacked_370_M 81_10.0s_IRCUT_20260114-200210.jpg" class="thumbnail" alt="M81" onclick="openModal('targets/galaxies/m81/Stacked_370_M 81_10.0s_IRCUT_20260114-200210.jpg')" style="cursor: pointer;">
+                <img src="targets/galaxies/m81/M81_2026-01-15.png" class="thumbnail" alt="M81" onclick="openModal('targets/galaxies/m81/M81_2026-01-15.png')" style="cursor: pointer;">
             </div>
         </div>
         <div class="ra-column" data-ra="10">

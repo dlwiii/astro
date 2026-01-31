@@ -92,15 +92,34 @@
         .status.not-captured {
             color: #666;
         }
+        .nav-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: #1a1a1a;
+            border: 2px solid #4a9eff;
+            border-radius: 5px;
+            color: #4a9eff;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: all 0.2s;
+            z-index: 100;
+        }
+        .nav-home:hover {
+            background: #4a9eff;
+            color: #000;
+        }
     </style>
 </head>
 <body>
+    <a href="index.html" class="nav-home">← Home</a>
     <h1>Messier Catalog Progress</h1>
     <div class="filter-box">
         <input type="text" id="filterInput" placeholder="Filter objects (e.g., M31, Galaxy, Nebula)..." onkeyup="filterGallery()">
     </div>
     <div class="stats">
-        <strong>17</strong> of <strong>110</strong> objects captured (15.5%)
+        <strong>24</strong> of <strong>110</strong> objects captured (21.8%)
     </div>
     <div class="gallery">
         <div class="messier-card captured">
@@ -204,7 +223,7 @@
         <div class="messier-card captured">
             <h3>M15 - Globular Cluster</h3>
             <div class="image-container">
-                <a href="targets/clusters/m15/2025-12-27/Stacked_73_M 15_10.0s_IRCUT_20251227-183234.jpg" target="_blank"><img src="targets/clusters/m15/2025-12-27/Stacked_73_M 15_10.0s_IRCUT_20251227-183234.jpg" alt="M15 - Globular Cluster"></a>
+                <a href="targets/clusters/m15/2025-12-27/Stacked_73_M%2015_10.0s_IRCUT_20251227-183234.jpg" target="_blank"><img src="targets/clusters/m15/2025-12-27/Stacked_73_M%2015_10.0s_IRCUT_20251227-183234.jpg" alt="M15 - Globular Cluster"></a>
             </div>
             <div class="status">✓ Captured</div>
         </div>
@@ -334,12 +353,12 @@
             </div>
             <div class="status">✓ Captured</div>
         </div>
-        <div class="messier-card">
+        <div class="messier-card captured">
             <h3>M34 - Open Cluster</h3>
             <div class="image-container">
-                <div class="placeholder">?</div>
+                <a href="targets/clusters/m34/Stacked_55_M%2034_10.0s_IRCUT_20260130-212519.jpg" target="_blank"><img src="targets/clusters/m34/Stacked_55_M%2034_10.0s_IRCUT_20260130-212519.jpg" alt="M34 - Open Cluster"></a>
             </div>
-            <div class="status not-captured">Not yet captured</div>
+            <div class="status">✓ Captured</div>
         </div>
         <div class="messier-card captured">
             <h3>M35 - Open Cluster</h3>
@@ -358,7 +377,7 @@
         <div class="messier-card captured">
             <h3>M37 - Open Cluster</h3>
             <div class="image-container">
-                <a href="targets/clusters/m37/Stacked_34_M 37_10.0s_IRCUT_20260126-190605.jpg" target="_blank"><img src="targets/clusters/m37/Stacked_34_M 37_10.0s_IRCUT_20260126-190605.jpg" alt="M37 - Open Cluster"></a>
+                <a href="targets/clusters/m37/Stacked_34_M%2037_10.0s_IRCUT_20260126-190605.jpg" target="_blank"><img src="targets/clusters/m37/Stacked_34_M%2037_10.0s_IRCUT_20260126-190605.jpg" alt="M37 - Open Cluster"></a>
             </div>
             <div class="status">✓ Captured</div>
         </div>
@@ -383,12 +402,12 @@
             </div>
             <div class="status not-captured">Not yet captured</div>
         </div>
-        <div class="messier-card">
+        <div class="messier-card captured">
             <h3>M41 - Open Cluster</h3>
             <div class="image-container">
-                <div class="placeholder">?</div>
+                <a href="targets/clusters/m41/Stacked_4_M%2041_10.0s_IRCUT_20260126-220904.jpg" target="_blank"><img src="targets/clusters/m41/Stacked_4_M%2041_10.0s_IRCUT_20260126-220904.jpg" alt="M41 - Open Cluster"></a>
             </div>
-            <div class="status not-captured">Not yet captured</div>
+            <div class="status">✓ Captured</div>
         </div>
         <div class="messier-card captured">
             <h3>M42 - Orion Nebula</h3>
@@ -418,19 +437,19 @@
             </div>
             <div class="status">✓ Captured</div>
         </div>
-        <div class="messier-card">
+        <div class="messier-card captured">
             <h3>M46 - Open Cluster</h3>
             <div class="image-container">
-                <div class="placeholder">?</div>
+                <a href="targets/clusters/m46/Stacked_4_M%2046_10.0s_IRCUT_20260126-221207.jpg" target="_blank"><img src="targets/clusters/m46/Stacked_4_M%2046_10.0s_IRCUT_20260126-221207.jpg" alt="M46 - Open Cluster"></a>
             </div>
-            <div class="status not-captured">Not yet captured</div>
+            <div class="status">✓ Captured</div>
         </div>
-        <div class="messier-card">
+        <div class="messier-card captured">
             <h3>M47 - Open Cluster</h3>
             <div class="image-container">
-                <div class="placeholder">?</div>
+                <a href="targets/clusters/m47/Stacked_13_M%2047_10.0s_IRCUT_20260126-192239.jpg" target="_blank"><img src="targets/clusters/m47/Stacked_13_M%2047_10.0s_IRCUT_20260126-192239.jpg" alt="M47 - Open Cluster"></a>
             </div>
-            <div class="status not-captured">Not yet captured</div>
+            <div class="status">✓ Captured</div>
         </div>
         <div class="messier-card captured">
             <h3>M48 - Open Cluster</h3>
@@ -614,12 +633,12 @@
             </div>
             <div class="status not-captured">Not yet captured</div>
         </div>
-        <div class="messier-card">
+        <div class="messier-card captured">
             <h3>M74 - Spiral Galaxy</h3>
             <div class="image-container">
-                <div class="placeholder">?</div>
+                <a href="targets/galaxies/m74/m74_2026-01-30.png" target="_blank"><img src="targets/galaxies/m74/m74_2026-01-30.png" alt="M74 - Spiral Galaxy"></a>
             </div>
-            <div class="status not-captured">Not yet captured</div>
+            <div class="status">✓ Captured</div>
         </div>
         <div class="messier-card">
             <h3>M75 - Globular Cluster</h3>
@@ -635,12 +654,12 @@
             </div>
             <div class="status">✓ Captured</div>
         </div>
-        <div class="messier-card">
+        <div class="messier-card captured">
             <h3>M77 - Spiral Galaxy</h3>
             <div class="image-container">
-                <div class="placeholder">?</div>
+                <a href="targets/galaxies/m77/Stacked_6_M%2077_10.0s_IRCUT_20260130-213529.jpg" target="_blank"><img src="targets/galaxies/m77/Stacked_6_M%2077_10.0s_IRCUT_20260130-213529.jpg" alt="M77 - Spiral Galaxy"></a>
             </div>
-            <div class="status not-captured">Not yet captured</div>
+            <div class="status">✓ Captured</div>
         </div>
         <div class="messier-card">
             <h3>M78 - Reflection Nebula</h3>
@@ -649,12 +668,12 @@
             </div>
             <div class="status not-captured">Not yet captured</div>
         </div>
-        <div class="messier-card">
+        <div class="messier-card captured">
             <h3>M79 - Globular Cluster</h3>
             <div class="image-container">
-                <div class="placeholder">?</div>
+                <a href="targets/clusters/m79/Stacked_20_M%2079_10.0s_IRCUT_20260129-194638.jpg" target="_blank"><img src="targets/clusters/m79/Stacked_20_M%2079_10.0s_IRCUT_20260129-194638.jpg" alt="M79 - Globular Cluster"></a>
             </div>
-            <div class="status not-captured">Not yet captured</div>
+            <div class="status">✓ Captured</div>
         </div>
         <div class="messier-card">
             <h3>M80 - Globular Cluster</h3>
@@ -666,7 +685,7 @@
         <div class="messier-card captured">
             <h3>M81 - Bode's Galaxy</h3>
             <div class="image-container">
-                <a href="targets/galaxies/m81/Stacked_370_M 81_10.0s_IRCUT_20260114-200210.jpg" target="_blank"><img src="targets/galaxies/m81/Stacked_370_M 81_10.0s_IRCUT_20260114-200210.jpg" alt="M81 - Bode's Galaxy"></a>
+                <a href="targets/galaxies/m81/M81_2026-01-15.png" target="_blank"><img src="targets/galaxies/m81/M81_2026-01-15.png" alt="M81 - Bode's Galaxy"></a>
             </div>
             <div class="status">✓ Captured</div>
         </div>
@@ -820,7 +839,7 @@
         <div class="messier-card captured">
             <h3>M103 - Open Cluster</h3>
             <div class="image-container">
-                <a href="targets/clusters/m103/Stacked_65_M 103_10.0s_IRCUT_20260127-195407.jpg" target="_blank"><img src="targets/clusters/m103/Stacked_65_M 103_10.0s_IRCUT_20260127-195407.jpg" alt="M103 - Open Cluster"></a>
+                <a href="targets/clusters/m103/Stacked_65_M%20103_10.0s_IRCUT_20260127-195407.jpg" target="_blank"><img src="targets/clusters/m103/Stacked_65_M%20103_10.0s_IRCUT_20260127-195407.jpg" alt="M103 - Open Cluster"></a>
             </div>
             <div class="status">✓ Captured</div>
         </div>
