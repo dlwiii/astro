@@ -159,6 +159,46 @@
             font-size: 2em;
             margin-top: 5px;
         }
+        .controls {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            align-items: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        .control-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .control-group label {
+            color: #888;
+            font-size: 0.9em;
+        }
+        select, button {
+            background: #1a1a1a;
+            color: #fff;
+            border: 2px solid #333;
+            border-radius: 6px;
+            padding: 8px 12px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        select:hover, button:hover {
+            border-color: #4a9eff;
+        }
+        select:focus, button:focus {
+            outline: none;
+            border-color: #4a9eff;
+        }
+        button {
+            padding: 8px 16px;
+        }
+        button:active {
+            transform: scale(0.98);
+        }
         @media (max-width: 1400px) {
             .ra-grid {
                 grid-template-columns: repeat(12, 1fr);
@@ -178,11 +218,43 @@
         <br>
         <span style="font-size: 0.8em; color: #888;">24 columns for RA hours 0-23, sorted by declination (north at top)</span>
     </div>
+    <div class="controls">
+        <div class="control-group">
+            <label for="startRA">Start RA:</label>
+            <select id="startRA">
+                <option value="0">0h</option>
+                <option value="1">1h</option>
+                <option value="2">2h</option>
+                <option value="3">3h</option>
+                <option value="4">4h</option>
+                <option value="5">5h</option>
+                <option value="6">6h</option>
+                <option value="7">7h</option>
+                <option value="8">8h</option>
+                <option value="9">9h</option>
+                <option value="10">10h</option>
+                <option value="11">11h</option>
+                <option value="12">12h</option>
+                <option value="13">13h</option>
+                <option value="14">14h</option>
+                <option value="15">15h</option>
+                <option value="16">16h</option>
+                <option value="17">17h</option>
+                <option value="18">18h</option>
+                <option value="19">19h</option>
+                <option value="20" selected>20h</option>
+                <option value="21">21h</option>
+                <option value="22">22h</option>
+                <option value="23">23h</option>
+            </select>
+        </div>
+        <button id="reverseBtn">↔ Reverse Order</button>
+    </div>
     <div class="scroll-wrapper-top" id="scrollTop">
         <div class="scroll-content-top" id="scrollContentTop"></div>
     </div>
     <div class="ra-grid" id="raGrid">
-        <div class="ra-column">
+        <div class="ra-column" data-ra="20">
             <div class="ra-header">RA 20h</div>
             <div class="messier-item">
                 <div class="messier-number">M29</div>
@@ -209,7 +281,7 @@
                 <div class="placeholder">?</div>
             </div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="21">
             <div class="ra-header">RA 21h</div>
             <div class="messier-item">
                 <div class="messier-number">M39</div>
@@ -236,10 +308,10 @@
                 <div class="placeholder">?</div>
             </div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="22">
             <div class="ra-header">RA 22h</div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="23">
             <div class="ra-header">RA 23h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M52</div>
@@ -248,7 +320,7 @@
                 <img src="targets/clusters/m52/Stacked_74_M 52_10.0s_IRCUT_20260127-201222.jpg" class="thumbnail" alt="M52" onclick="openModal('targets/clusters/m52/Stacked_74_M 52_10.0s_IRCUT_20260127-201222.jpg')" style="cursor: pointer;">
             </div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="0">
             <div class="ra-header">RA 0h</div>
             <div class="messier-item">
                 <div class="messier-number">M110</div>
@@ -269,7 +341,7 @@
                 <div class="placeholder">?</div>
             </div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="1">
             <div class="ra-header">RA 1h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M103</div>
@@ -296,7 +368,7 @@
                 <div class="placeholder">?</div>
             </div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="2">
             <div class="ra-header">RA 2h</div>
             <div class="messier-item">
                 <div class="messier-number">M34</div>
@@ -311,7 +383,7 @@
                 <div class="placeholder">?</div>
             </div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="3">
             <div class="ra-header">RA 3h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M45</div>
@@ -320,10 +392,10 @@
                 <img src="targets/clusters/m45/2025-12-27/M45/Stacked_65_M 45_10.0s_IRCUT_20251227-194834.jpg" class="thumbnail" alt="M45" onclick="openModal('targets/clusters/m45/2025-12-27/M45/Stacked_65_M 45_10.0s_IRCUT_20251227-194834.jpg')" style="cursor: pointer;">
             </div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="4">
             <div class="ra-header">RA 4h</div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="5">
             <div class="ra-header">RA 5h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M38</div>
@@ -374,7 +446,7 @@
                 <div class="placeholder">?</div>
             </div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="6">
             <div class="ra-header">RA 6h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M35</div>
@@ -389,7 +461,7 @@
                 <div class="placeholder">?</div>
             </div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="7">
             <div class="ra-header">RA 7h</div>
             <div class="messier-item">
                 <div class="messier-number">M50</div>
@@ -416,7 +488,7 @@
                 <div class="placeholder">?</div>
             </div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="8">
             <div class="ra-header">RA 8h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M44</div>
@@ -437,7 +509,7 @@
                 <img src="targets/clusters/m48/Stacked_108_M 48_10.0s_IRCUT_20260126-201322.jpg" class="thumbnail" alt="M48" onclick="openModal('targets/clusters/m48/Stacked_108_M 48_10.0s_IRCUT_20260126-201322.jpg')" style="cursor: pointer;">
             </div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="9">
             <div class="ra-header">RA 9h</div>
             <div class="messier-item">
                 <div class="messier-number">M82</div>
@@ -452,7 +524,7 @@
                 <img src="targets/galaxies/m81/Stacked_370_M 81_10.0s_IRCUT_20260114-200210.jpg" class="thumbnail" alt="M81" onclick="openModal('targets/galaxies/m81/Stacked_370_M 81_10.0s_IRCUT_20260114-200210.jpg')" style="cursor: pointer;">
             </div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="10">
             <div class="ra-header">RA 10h</div>
             <div class="messier-item">
                 <div class="messier-number">M105</div>
@@ -473,7 +545,7 @@
                 <div class="placeholder">?</div>
             </div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="11">
             <div class="ra-header">RA 11h</div>
             <div class="messier-item">
                 <div class="messier-number">M108</div>
@@ -506,7 +578,7 @@
                 <div class="placeholder">?</div>
             </div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="12">
             <div class="ra-header">RA 12h</div>
             <div class="messier-item">
                 <div class="messier-number">M40</div>
@@ -641,7 +713,7 @@
                 <div class="placeholder">?</div>
             </div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="13">
             <div class="ra-header">RA 13h</div>
             <div class="messier-item">
                 <div class="messier-number">M51</div>
@@ -674,7 +746,7 @@
                 <div class="placeholder">?</div>
             </div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="14">
             <div class="ra-header">RA 14h</div>
             <div class="messier-item">
                 <div class="messier-number">M101</div>
@@ -683,7 +755,7 @@
                 <div class="placeholder">?</div>
             </div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="15">
             <div class="ra-header">RA 15h</div>
             <div class="messier-item">
                 <div class="messier-number">M102</div>
@@ -698,7 +770,7 @@
                 <div class="placeholder">?</div>
             </div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="16">
             <div class="ra-header">RA 16h</div>
             <div class="messier-item">
                 <div class="messier-number">M13</div>
@@ -737,7 +809,7 @@
                 <div class="placeholder">?</div>
             </div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="17">
             <div class="ra-header">RA 17h</div>
             <div class="messier-item">
                 <div class="messier-number">M92</div>
@@ -788,7 +860,7 @@
                 <div class="placeholder">?</div>
             </div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="18">
             <div class="ra-header">RA 18h</div>
             <div class="messier-item">
                 <div class="messier-number">M57</div>
@@ -887,7 +959,7 @@
                 <div class="placeholder">?</div>
             </div>
         </div>
-        <div class="ra-column">
+        <div class="ra-column" data-ra="19">
             <div class="ra-header">RA 19h</div>
             <div class="messier-item">
                 <div class="messier-number">M56</div>
@@ -966,6 +1038,59 @@
                 closeModal();
             }
         });
+
+        // RA Column Ordering
+        let isReversed = localStorage.getItem('raReversed') === 'true' || false;
+        let startRA = parseInt(localStorage.getItem('raStart') || '20');
+
+        // Set initial values
+        document.getElementById('startRA').value = startRA;
+
+        function reorderColumns() {
+            const grid = document.getElementById('raGrid');
+            const columns = Array.from(grid.querySelectorAll('.ra-column'));
+
+            // Create order array
+            let order = [];
+            for (let i = 0; i < 24; i++) {
+                order.push((startRA + i) % 24);
+            }
+
+            // Reverse if needed
+            if (isReversed) {
+                order.reverse();
+            }
+
+            // Sort columns by order
+            columns.sort((a, b) => {
+                const raA = parseInt(a.dataset.ra);
+                const raB = parseInt(b.dataset.ra);
+                return order.indexOf(raA) - order.indexOf(raB);
+            });
+
+            // Reappend in new order
+            columns.forEach(col => grid.appendChild(col));
+
+            // Update scroll width
+            updateScrollWidth();
+        }
+
+        // Start RA selector
+        document.getElementById('startRA').addEventListener('change', function() {
+            startRA = parseInt(this.value);
+            localStorage.setItem('raStart', startRA);
+            reorderColumns();
+        });
+
+        // Reverse button
+        document.getElementById('reverseBtn').addEventListener('click', function() {
+            isReversed = !isReversed;
+            localStorage.setItem('raReversed', isReversed);
+            reorderColumns();
+        });
+
+        // Apply initial order
+        reorderColumns();
     </script>
 </body>
 </html>
