@@ -72,8 +72,28 @@ def find_all_target_images():
                             best_priority = 2
                             best_date = ''
 
-            # Priority 3: Stacked JPG files (highest stack count)
+            # Priority 3: Dated JPG files (name_YYYY-MM-DD.jpg)
             if best_priority > 3:
+                for jpg in target_dir.rglob('*.jpg'):
+                    # Skip thumbnails and intermediate files
+                    if '_thn.jpg' in str(jpg) or 'process' in str(jpg) or 'lights' in str(jpg):
+                        continue
+
+                    # Skip broken symlinks
+                    if not jpg.exists():
+                        continue
+
+                    # Match dated pattern: targetname_YYYY-MM-DD.jpg
+                    match = re.search(r'(\w+)_(\d{4}-\d{2}-\d{2})\.jpg$', jpg.name, re.IGNORECASE)
+                    if match and match.group(1).lower() in target_name.lower():
+                        date_str = match.group(2)
+                        if best_priority > 3 or (best_priority == 3 and date_str > best_date):
+                            best_image = str(jpg)
+                            best_priority = 3
+                            best_date = date_str
+
+            # Priority 4: Stacked JPG files (highest stack count)
+            if best_priority > 4:
                 max_stack = 0
                 for jpg in target_dir.rglob('Stacked_*.jpg'):
                     if '_thn.jpg' in str(jpg) or 'lights' in str(jpg):
@@ -88,7 +108,7 @@ def find_all_target_images():
                         stack_count = int(stack_match.group(1))
                         if stack_count > max_stack:
                             best_image = str(jpg)
-                            best_priority = 3
+                            best_priority = 4
                             max_stack = stack_count
 
             if best_image:
