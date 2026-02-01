@@ -33,7 +33,7 @@ def find_all_target_images():
             # Priority 1: Dated PNG files (name_YYYY-MM-DD.png)
             for png in target_dir.rglob('*.png'):
                 # Skip thumbnails and intermediate files
-                if '_thn.png' in str(png) or 'process' in str(png):
+                if '_thn.png' in str(png) or 'process' in str(png) or 'lights' in str(png):
                     continue
 
                 # Skip broken symlinks
@@ -52,24 +52,31 @@ def find_all_target_images():
             # Priority 2: Undated PNG files (targetname.png)
             if best_priority > 2:
                 for png in target_dir.rglob('*.png'):
-                    if '_thn.png' in str(png) or 'process' in str(png):
+                    if '_thn.png' in str(png) or 'process' in str(png) or 'lights' in str(png):
                         continue
 
                     # Skip broken symlinks
                     if not png.exists():
                         continue
 
-                    # Simple pattern match
-                    if png.stem.lower() in target_name.lower() or target_name.lower() in png.stem.lower():
+                    # Prefer exact match first
+                    if png.stem.lower() == target_name.lower():
                         best_image = str(png)
                         best_priority = 2
                         best_date = ''
+                        break
+                    # Then partial match
+                    elif png.stem.lower() in target_name.lower() or target_name.lower() in png.stem.lower():
+                        if best_priority > 2:
+                            best_image = str(png)
+                            best_priority = 2
+                            best_date = ''
 
             # Priority 3: Stacked JPG files (highest stack count)
             if best_priority > 3:
                 max_stack = 0
                 for jpg in target_dir.rglob('Stacked_*.jpg'):
-                    if '_thn.jpg' in str(jpg):
+                    if '_thn.jpg' in str(jpg) or 'lights' in str(jpg):
                         continue
 
                     # Skip broken symlinks
