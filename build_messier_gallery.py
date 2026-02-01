@@ -180,15 +180,12 @@ def generate_html():
             text-align: center;
             line-height: 250px;
         }}
-        .image-container a {{
-            display: inline-block;
-            cursor: pointer;
-        }}
         .image-container img {{
             max-width: 100%%;
             max-height: 250px;
             vertical-align: middle;
             transition: opacity 0.2s;
+            cursor: pointer;
         }}
         .image-container img:hover {{
             opacity: 0.8;
@@ -223,6 +220,43 @@ def generate_html():
             background: #4a9eff;
             color: #000;
         }}
+        /* Modal styles */
+        .modal {{
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            cursor: pointer;
+        }}
+        .modal.active {{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }}
+        .modal-content {{
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            border: 3px solid #4a9eff;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(74, 158, 255, 0.5);
+        }}
+        .modal-close {{
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }}
+        .modal-close:hover {{
+            color: #4a9eff;
+        }}
     </style>
 </head>
 <body>
@@ -244,7 +278,7 @@ def generate_html():
             img_path = images[m_num]
             img_path_encoded = quote(img_path)
             card_class = "messier-card captured"
-            img_html = f'<a href="{img_path_encoded}" target="_blank"><img src="{img_path_encoded}" alt="{name}"></a>'
+            img_html = f'<img src="{img_path_encoded}" alt="{name}" onclick="openModal(\'{img_path_encoded}\')">'
             status = '<div class="status">✓ Captured</div>'
         else:
             card_class = "messier-card"
@@ -261,6 +295,13 @@ def generate_html():
 """
 
     html += """    </div>
+
+    <!-- Modal for full-size image viewing -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
     <script>
         function filterGallery() {
             const filter = document.getElementById('filterInput').value.toLowerCase();
@@ -275,6 +316,26 @@ def generate_html():
                 }
             });
         }
+
+        // Modal functions
+        function openModal(imagePath) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.classList.add('active');
+            modalImg.src = imagePath;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+        }
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
     </script>
 </body>
 </html>
