@@ -36,6 +36,10 @@ def find_all_target_images():
                 if '_thn.png' in str(png) or 'process' in str(png):
                     continue
 
+                # Skip broken symlinks
+                if not png.exists():
+                    continue
+
                 # Match dated pattern: targetname_YYYY-MM-DD.png
                 match = re.search(r'(\w+)_(\d{4}-\d{2}-\d{2})\.png$', png.name, re.IGNORECASE)
                 if match and match.group(1).lower() in target_name.lower():
@@ -50,6 +54,11 @@ def find_all_target_images():
                 for png in target_dir.rglob('*.png'):
                     if '_thn.png' in str(png) or 'process' in str(png):
                         continue
+
+                    # Skip broken symlinks
+                    if not png.exists():
+                        continue
+
                     # Simple pattern match
                     if png.stem.lower() in target_name.lower() or target_name.lower() in png.stem.lower():
                         best_image = str(png)
@@ -61,6 +70,10 @@ def find_all_target_images():
                 max_stack = 0
                 for jpg in target_dir.rglob('Stacked_*.jpg'):
                     if '_thn.jpg' in str(jpg):
+                        continue
+
+                    # Skip broken symlinks
+                    if not jpg.exists():
                         continue
 
                     stack_match = re.search(r'Stacked_(\d+)_', jpg.name)
