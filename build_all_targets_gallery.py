@@ -148,6 +148,38 @@ def format_target_name(name):
     # Otherwise, title case with underscores replaced by spaces
     return name.replace('_', ' ').title()
 
+def sort_key_numeric(item):
+    """Sort key that handles numeric catalog numbers properly."""
+    name, info = item
+    display_name = info['display_name']
+
+    # Extract numeric part for Messier objects
+    if display_name.startswith('M') and len(display_name) > 1:
+        m_match = re.match(r'M(\d+)', display_name)
+        if m_match:
+            return (0, int(m_match.group(1)), display_name)
+
+    # Extract numeric part for NGC objects
+    if display_name.startswith('NGC '):
+        ngc_match = re.match(r'NGC (\d+)', display_name)
+        if ngc_match:
+            return (1, int(ngc_match.group(1)), display_name)
+
+    # Extract numeric part for IC objects
+    if display_name.startswith('IC '):
+        ic_match = re.match(r'IC (\d+)', display_name)
+        if ic_match:
+            return (2, int(ic_match.group(1)), display_name)
+
+    # Extract numeric part for Caldwell objects
+    if display_name.startswith('C') and len(display_name) > 1:
+        c_match = re.match(r'C(\d+)', display_name)
+        if c_match:
+            return (3, int(c_match.group(1)), display_name)
+
+    # Everything else sorts alphabetically after catalogs
+    return (4, 0, display_name)
+
 def generate_html():
     """Generate HTML for all targets gallery."""
     targets = find_all_target_images()
@@ -319,7 +351,7 @@ def generate_html():
         <div class="category-header">Galaxies ({len(galaxies)})</div>
         <div class="target-grid">
 """
-        for name, info in sorted(galaxies.items(), key=lambda x: x[1]['display_name']):
+        for name, info in sorted(galaxies.items(), key=sort_key_numeric):
             path_encoded = quote(info['path'])
             html += f"""
             <div class="target-card" data-name="{name}" data-type="galaxy" onclick="openModal('{path_encoded}')">
@@ -340,7 +372,7 @@ def generate_html():
         <div class="category-header">Clusters ({len(clusters)})</div>
         <div class="target-grid">
 """
-        for name, info in sorted(clusters.items(), key=lambda x: x[1]['display_name']):
+        for name, info in sorted(clusters.items(), key=sort_key_numeric):
             path_encoded = quote(info['path'])
             html += f"""
             <div class="target-card" data-name="{name}" data-type="cluster" onclick="openModal('{path_encoded}')">
@@ -361,7 +393,7 @@ def generate_html():
         <div class="category-header">Nebulae ({len(nebulae)})</div>
         <div class="target-grid">
 """
-        for name, info in sorted(nebulae.items(), key=lambda x: x[1]['display_name']):
+        for name, info in sorted(nebulae.items(), key=sort_key_numeric):
             path_encoded = quote(info['path'])
             html += f"""
             <div class="target-card" data-name="{name}" data-type="nebula" onclick="openModal('{path_encoded}')">
