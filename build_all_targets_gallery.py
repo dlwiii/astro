@@ -153,29 +153,29 @@ def sort_key_numeric(item):
     name, info = item
     display_name = info['display_name']
 
-    # Extract numeric part for Messier objects
-    if display_name.startswith('M') and len(display_name) > 1:
-        m_match = re.match(r'M(\d+)', display_name)
-        if m_match:
-            return (0, int(m_match.group(1)), display_name)
-
-    # Extract numeric part for NGC objects
-    if display_name.startswith('NGC '):
-        ngc_match = re.match(r'NGC (\d+)', display_name)
-        if ngc_match:
-            return (1, int(ngc_match.group(1)), display_name)
+    # Extract numeric part for Caldwell objects (C comes first alphabetically)
+    if display_name.startswith('C') and len(display_name) > 1:
+        c_match = re.match(r'C(\d+)', display_name)
+        if c_match:
+            return (0, int(c_match.group(1)), display_name)
 
     # Extract numeric part for IC objects
     if display_name.startswith('IC '):
         ic_match = re.match(r'IC (\d+)', display_name)
         if ic_match:
-            return (2, int(ic_match.group(1)), display_name)
+            return (1, int(ic_match.group(1)), display_name)
 
-    # Extract numeric part for Caldwell objects
-    if display_name.startswith('C') and len(display_name) > 1:
-        c_match = re.match(r'C(\d+)', display_name)
-        if c_match:
-            return (3, int(c_match.group(1)), display_name)
+    # Extract numeric part for Messier objects
+    if display_name.startswith('M') and len(display_name) > 1:
+        m_match = re.match(r'M(\d+)', display_name)
+        if m_match:
+            return (2, int(m_match.group(1)), display_name)
+
+    # Extract numeric part for NGC objects
+    if display_name.startswith('NGC '):
+        ngc_match = re.match(r'NGC (\d+)', display_name)
+        if ngc_match:
+            return (3, int(ngc_match.group(1)), display_name)
 
     # Everything else sorts alphabetically after catalogs
     return (4, 0, display_name)
