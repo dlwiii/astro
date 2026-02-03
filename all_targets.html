@@ -147,12 +147,18 @@
         <input type="text" id="filterInput" placeholder="Filter targets (e.g., M31, NGC, Nebula)..." onkeyup="filterTargets()">
     </div>
     <div class="stats">
-        <strong>48</strong> targets captured
+        <strong>50</strong> targets captured
     </div>
 
     <div class="category-section">
-        <div class="category-header">Galaxies (12)</div>
+        <div class="category-header">Galaxies (13)</div>
         <div class="target-grid">
+
+            <div class="target-card" data-name="c5" data-type="galaxy" onclick="openModal('targets/galaxies/c5/Stacked_89_C%205_10.0s_IRCUT_20260202-205858.jpg')">
+                <div class="target-name">C5</div>
+                <div class="target-type">Galaxy</div>
+                <img src="targets/galaxies/c5/Stacked_89_C%205_10.0s_IRCUT_20260202-205858.jpg" class="target-image" alt="C5">
+            </div>
 
             <div class="target-card" data-name="m31" data-type="galaxy" onclick="openModal('targets/galaxies/m31/m31_2026-01-30.png')">
                 <div class="target-name">M31</div>
@@ -230,8 +236,14 @@
     </div>
 
     <div class="category-section">
-        <div class="category-header">Clusters (20)</div>
+        <div class="category-header">Clusters (21)</div>
         <div class="target-grid">
+
+            <div class="target-card" data-name="c1" data-type="cluster" onclick="openModal('targets/clusters/c1/Stacked_40_C%201_10.0s_IRCUT_20260202-203639.jpg')">
+                <div class="target-name">C1</div>
+                <div class="target-type">Cluster</div>
+                <img src="targets/clusters/c1/Stacked_40_C%201_10.0s_IRCUT_20260202-203639.jpg" class="target-image" alt="C1">
+            </div>
 
             <div class="target-card" data-name="m15" data-type="cluster" onclick="openModal('targets/clusters/m15/2025-12-27/m15_me.png')">
                 <div class="target-name">M15</div>
