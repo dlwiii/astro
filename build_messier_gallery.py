@@ -38,7 +38,23 @@ def find_messier_images():
                 if m_num not in messier_images or messier_images[m_num][2] != 'png':
                     messier_images[m_num] = (str(png), '0000-00-00', 'png')
 
-    # Priority 2: Fallback to stacked JPG images (only if no PNG exists)
+    # Priority 2: Dated JPG files (m##_YYYY-MM-DD.jpg)
+    for jpg in list(Path('targets').rglob('m*.jpg')):
+        if '_thn.jpg' in str(jpg):
+            continue
+        match = re.search(r'm(\d{1,3})_(\d{4}-\d{2}-\d{2})\.jpg$', str(jpg), re.IGNORECASE)
+        if match:
+            m_num = int(match.group(1))
+            date_str = match.group(2)
+            if m_num < 1 or m_num > 110:
+                continue
+            # Skip if we already have a PNG for this object
+            if m_num in messier_images and messier_images[m_num][2] == 'png':
+                continue
+            if m_num not in messier_images or date_str > messier_images[m_num][1]:
+                messier_images[m_num] = (str(jpg), date_str, 'jpg_dated')
+
+    # Priority 3: Fallback to stacked JPG images (only if no PNG or dated JPG exists)
     for jpg in Path('targets').rglob('Stacked_*M*.jpg'):
         if '_thn.jpg' in str(jpg):
             continue
@@ -51,8 +67,8 @@ def find_messier_images():
             if m_num < 1 or m_num > 110:
                 continue
 
-            # Skip if we already have a PNG for this object
-            if m_num in messier_images and messier_images[m_num][2] == 'png':
+            # Skip if we already have a PNG or dated JPG for this object
+            if m_num in messier_images and messier_images[m_num][2] in ('png', 'jpg_dated'):
                 continue
 
             # Extract stack count
