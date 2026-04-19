@@ -29,6 +29,7 @@ def find_all_target_images():
             best_image = None
             best_priority = 999
             best_date = ''
+            best_suffix = ''
 
             # Priority 1: Dated PNG files (name_YYYY-MM-DD.png)
             for png in target_dir.rglob('*.png'):
@@ -72,7 +73,7 @@ def find_all_target_images():
                             best_priority = 2
                             best_date = ''
 
-            # Priority 3: Dated JPG files (name_YYYY-MM-DD.jpg)
+            # Priority 3: Dated JPG files (name_YYYY-MM-DD.jpg or name_YYYY-MM-DD[a-z].jpg)
             if best_priority > 3:
                 for jpg in target_dir.rglob('*.jpg'):
                     # Skip thumbnails and intermediate files
@@ -83,14 +84,17 @@ def find_all_target_images():
                     if not jpg.exists():
                         continue
 
-                    # Match dated pattern: targetname_YYYY-MM-DD.jpg
-                    match = re.search(r'(\w+)_(\d{4}-\d{2}-\d{2})\.jpg$', jpg.name, re.IGNORECASE)
+                    # Match dated pattern: targetname_YYYY-MM-DD.jpg or targetname_YYYY-MM-DD[a-z].jpg
+                    match = re.search(r'(\w+)_(\d{4}-\d{2}-\d{2})([a-z]?)\.jpg$', jpg.name, re.IGNORECASE)
                     if match and match.group(1).lower() in target_name.lower():
                         date_str = match.group(2)
-                        if best_priority > 3 or (best_priority == 3 and date_str > best_date):
+                        suffix = match.group(3).lower()
+                        # Suffixed versions (e.g. 'b') beat plain dated versions for same date
+                        if best_priority > 3 or (best_priority == 3 and (date_str > best_date or (date_str == best_date and suffix > best_suffix))):
                             best_image = str(jpg)
                             best_priority = 3
                             best_date = date_str
+                            best_suffix = suffix
 
             # Priority 4: Stacked JPG files (highest stack count)
             if best_priority > 4:

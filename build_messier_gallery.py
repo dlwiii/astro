@@ -38,21 +38,31 @@ def find_messier_images():
                 if m_num not in messier_images or messier_images[m_num][2] != 'png':
                     messier_images[m_num] = (str(png), '0000-00-00', 'png')
 
-    # Priority 2: Dated JPG files (m##_YYYY-MM-DD.jpg)
+    # Priority 2: Dated JPG files (m##_YYYY-MM-DD.jpg or m##_YYYY-MM-DD[a-z].jpg)
     for jpg in list(Path('targets').rglob('m*.jpg')):
         if '_thn.jpg' in str(jpg):
             continue
-        match = re.search(r'm(\d{1,3})_(\d{4}-\d{2}-\d{2})\.jpg$', str(jpg), re.IGNORECASE)
+        match = re.search(r'm(\d{1,3})_(\d{4}-\d{2}-\d{2})([a-z]?)\.jpg$', str(jpg), re.IGNORECASE)
         if match:
             m_num = int(match.group(1))
             date_str = match.group(2)
+            suffix = match.group(3).lower()  # e.g. 'b' for user-processed best version
             if m_num < 1 or m_num > 110:
                 continue
             # Skip if we already have a PNG for this object
             if m_num in messier_images and messier_images[m_num][2] == 'png':
                 continue
-            if m_num not in messier_images or date_str > messier_images[m_num][1]:
-                messier_images[m_num] = (str(jpg), date_str, 'jpg_dated')
+            # Suffixed versions (e.g. 'b') beat plain dated versions for same date
+            existing = messier_images.get(m_num)
+            if existing is None:
+                messier_images[m_num] = (str(jpg), date_str, 'jpg_dated', suffix)
+            elif existing[2] != 'jpg_dated':
+                messier_images[m_num] = (str(jpg), date_str, 'jpg_dated', suffix)
+            else:
+                existing_date = existing[1]
+                existing_suffix = existing[3] if len(existing) > 3 else ''
+                if date_str > existing_date or (date_str == existing_date and suffix > existing_suffix):
+                    messier_images[m_num] = (str(jpg), date_str, 'jpg_dated', suffix)
 
     # Priority 3: Fallback to stacked JPG images (only if no PNG or dated JPG exists)
     for jpg in Path('targets').rglob('Stacked_*M*.jpg'):
