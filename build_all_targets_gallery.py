@@ -12,7 +12,8 @@ def find_all_target_images():
     categories = {
         'galaxies': 'Galaxy',
         'clusters': 'Cluster',
-        'nebulae': 'Nebula'
+        'nebulae': 'Nebula',
+        'stars': 'Star'
     }
 
     for category, obj_type in categories.items():
@@ -192,6 +193,7 @@ def generate_html():
     galaxies = {k: v for k, v in targets.items() if v['category'] == 'galaxies'}
     clusters = {k: v for k, v in targets.items() if v['category'] == 'clusters'}
     nebulae = {k: v for k, v in targets.items() if v['category'] == 'nebulae'}
+    stars = {k: v for k, v in targets.items() if v['category'] == 'stars'}
 
     total_count = len(targets)
 
@@ -403,6 +405,27 @@ def generate_html():
             <div class="target-card" data-name="{name}" data-type="nebula" onclick="openModal('{path_encoded}')">
                 <div class="target-name">{info['display_name']}</div>
                 <div class="target-type">Nebula</div>
+                <img src="{path_encoded}" class="target-image" alt="{info['display_name']}">
+            </div>
+"""
+        html += """
+        </div>
+    </div>
+"""
+
+    # Add stars section
+    if stars:
+        html += f"""
+    <div class="category-section">
+        <div class="category-header">Stars ({len(stars)})</div>
+        <div class="target-grid">
+"""
+        for name, info in sorted(stars.items(), key=sort_key_numeric):
+            path_encoded = quote(info['path'])
+            html += f"""
+            <div class="target-card" data-name="{name}" data-type="star" onclick="openModal('{path_encoded}')">
+                <div class="target-name">{info['display_name']}</div>
+                <div class="target-type">Star</div>
                 <img src="{path_encoded}" class="target-image" alt="{info['display_name']}">
             </div>
 """
