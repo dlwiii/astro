@@ -244,6 +244,20 @@
             background: #4a9eff;
             color: #000;
         }
+        .wiki-link {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px dotted currentColor;
+        }
+        .wiki-link:hover {
+            opacity: 0.75;
+            border-bottom-style: solid;
+        }
+        .wiki-link::after {
+            content: " 97";
+            font-size: 0.75em;
+            opacity: 0.6;
+        }
     </style>
 </head>
 <body>
@@ -297,25 +311,25 @@
             <div class="ra-header">RA 20h</div>
             <div class="messier-item">
                 <div class="messier-number">M29</div>
-                <div class="messier-name">Open Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_29" target="_blank" rel="noopener" title="Look up Open Cluster on Wikipedia">Open Cluster</a></div>
                 <div class="coords">RA 20h23m, Dec +38°</div>
                 <div class="placeholder">?</div>
             </div>
             <div class="messier-item">
                 <div class="messier-number">M72</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_72" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 20h53m, Dec -12°</div>
                 <div class="placeholder">?</div>
             </div>
             <div class="messier-item">
                 <div class="messier-number">M73</div>
-                <div class="messier-name">Asterism</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_73" target="_blank" rel="noopener" title="Look up Asterism on Wikipedia">Asterism</a></div>
                 <div class="coords">RA 20h58m, Dec -12°</div>
                 <div class="placeholder">?</div>
             </div>
             <div class="messier-item">
                 <div class="messier-number">M75</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_75" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 20h6m, Dec -21°</div>
                 <div class="placeholder">?</div>
             </div>
@@ -324,25 +338,25 @@
             <div class="ra-header">RA 21h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M39</div>
-                <div class="messier-name">Open Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_39" target="_blank" rel="noopener" title="Look up Open Cluster on Wikipedia">Open Cluster</a></div>
                 <div class="coords">RA 21h31m, Dec +48°</div>
                 <img src="targets/clusters/m39/m39_2026-02-01.jpg" class="thumbnail" alt="M39" onclick="openModal('targets/clusters/m39/m39_2026-02-01.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M15</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_15" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 21h30m, Dec +12°</div>
                 <img src="targets/clusters/m15/2025-12-27/Stacked_73_M%2015_10.0s_IRCUT_20251227-183234.jpg" class="thumbnail" alt="M15" onclick="openModal('targets/clusters/m15/2025-12-27/Stacked_73_M%2015_10.0s_IRCUT_20251227-183234.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item">
                 <div class="messier-number">M2</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_2" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 21h33m, Dec 0°</div>
                 <div class="placeholder">?</div>
             </div>
             <div class="messier-item">
                 <div class="messier-number">M30</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_30" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 21h40m, Dec -23°</div>
                 <div class="placeholder">?</div>
             </div>
@@ -354,7 +368,7 @@
             <div class="ra-header">RA 23h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M52</div>
-                <div class="messier-name">Open Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_52" target="_blank" rel="noopener" title="Look up Open Cluster on Wikipedia">Open Cluster</a></div>
                 <div class="coords">RA 23h24m, Dec +61°</div>
                 <img src="targets/clusters/m52/m52_2026-01-29.png" class="thumbnail" alt="M52" onclick="openModal('targets/clusters/m52/m52_2026-01-29.png')" style="cursor: pointer;">
             </div>
@@ -363,19 +377,19 @@
             <div class="ra-header">RA 0h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M110</div>
-                <div class="messier-name">Dwarf Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_110" target="_blank" rel="noopener" title="Look up Dwarf Galaxy on Wikipedia">Dwarf Galaxy</a></div>
                 <div class="coords">RA 0h40m, Dec +41°</div>
                 <img src="targets/galaxies/m110/Stacked_117_M%20110_10.0s_IRCUT_20260202-200403.jpg" class="thumbnail" alt="M110" onclick="openModal('targets/galaxies/m110/Stacked_117_M%20110_10.0s_IRCUT_20260202-200403.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M31</div>
-                <div class="messier-name">Andromeda Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Andromeda_Galaxy" target="_blank" rel="noopener" title="Look up Andromeda Galaxy on Wikipedia">Andromeda Galaxy</a></div>
                 <div class="coords">RA 0h42m, Dec +41°</div>
                 <img src="targets/galaxies/m31/m31_2026-01-30.png" class="thumbnail" alt="M31" onclick="openModal('targets/galaxies/m31/m31_2026-01-30.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M32</div>
-                <div class="messier-name">Dwarf Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_32" target="_blank" rel="noopener" title="Look up Dwarf Galaxy on Wikipedia">Dwarf Galaxy</a></div>
                 <div class="coords">RA 0h42m, Dec +40°</div>
                 <img src="targets/galaxies/m32/Stacked_78_M%2032_10.0s_IRCUT_20260202-193502.jpg" class="thumbnail" alt="M32" onclick="openModal('targets/galaxies/m32/Stacked_78_M%2032_10.0s_IRCUT_20260202-193502.jpg')" style="cursor: pointer;">
             </div>
@@ -384,25 +398,25 @@
             <div class="ra-header">RA 1h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M103</div>
-                <div class="messier-name">Open Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_103" target="_blank" rel="noopener" title="Look up Open Cluster on Wikipedia">Open Cluster</a></div>
                 <div class="coords">RA 1h33m, Dec +60°</div>
                 <img src="targets/clusters/m103/Stacked_65_M%20103_10.0s_IRCUT_20260127-195407.jpg" class="thumbnail" alt="M103" onclick="openModal('targets/clusters/m103/Stacked_65_M%20103_10.0s_IRCUT_20260127-195407.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M76</div>
-                <div class="messier-name">Little Dumbbell Nebula</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Little_Dumbbell_Nebula" target="_blank" rel="noopener" title="Look up Little Dumbbell Nebula on Wikipedia">Little Dumbbell Nebula</a></div>
                 <div class="coords">RA 1h42m, Dec +51°</div>
                 <img src="targets/nebulae/m76/m76_2026-01-29.png" class="thumbnail" alt="M76" onclick="openModal('targets/nebulae/m76/m76_2026-01-29.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M33</div>
-                <div class="messier-name">Triangulum Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Triangulum_Galaxy" target="_blank" rel="noopener" title="Look up Triangulum Galaxy on Wikipedia">Triangulum Galaxy</a></div>
                 <div class="coords">RA 1h33m, Dec +30°</div>
                 <img src="targets/galaxies/m33/m33_2025-01-26.png" class="thumbnail" alt="M33" onclick="openModal('targets/galaxies/m33/m33_2025-01-26.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M74</div>
-                <div class="messier-name">Spiral Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_74" target="_blank" rel="noopener" title="Look up Spiral Galaxy on Wikipedia">Spiral Galaxy</a></div>
                 <div class="coords">RA 1h36m, Dec +15°</div>
                 <img src="targets/galaxies/m74/m74_2026-01-30.png" class="thumbnail" alt="M74" onclick="openModal('targets/galaxies/m74/m74_2026-01-30.png')" style="cursor: pointer;">
             </div>
@@ -411,13 +425,13 @@
             <div class="ra-header">RA 2h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M34</div>
-                <div class="messier-name">Open Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_34" target="_blank" rel="noopener" title="Look up Open Cluster on Wikipedia">Open Cluster</a></div>
                 <div class="coords">RA 2h42m, Dec +42°</div>
                 <img src="targets/clusters/m34/Stacked_55_M%2034_10.0s_IRCUT_20260130-212519.jpg" class="thumbnail" alt="M34" onclick="openModal('targets/clusters/m34/Stacked_55_M%2034_10.0s_IRCUT_20260130-212519.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M77</div>
-                <div class="messier-name">Spiral Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_77" target="_blank" rel="noopener" title="Look up Spiral Galaxy on Wikipedia">Spiral Galaxy</a></div>
                 <div class="coords">RA 2h42m, Dec 0°</div>
                 <img src="targets/galaxies/m77/m77_2026-01-31.png" class="thumbnail" alt="M77" onclick="openModal('targets/galaxies/m77/m77_2026-01-31.png')" style="cursor: pointer;">
             </div>
@@ -426,7 +440,7 @@
             <div class="ra-header">RA 3h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M45</div>
-                <div class="messier-name">Pleiades</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Pleiades" target="_blank" rel="noopener" title="Look up Pleiades on Wikipedia">Pleiades</a></div>
                 <div class="coords">RA 3h46m, Dec +24°</div>
                 <img src="targets/clusters/m45/m45_2026-01-29.png" class="thumbnail" alt="M45" onclick="openModal('targets/clusters/m45/m45_2026-01-29.png')" style="cursor: pointer;">
             </div>
@@ -438,49 +452,49 @@
             <div class="ra-header">RA 5h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M38</div>
-                <div class="messier-name">Open Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_38" target="_blank" rel="noopener" title="Look up Open Cluster on Wikipedia">Open Cluster</a></div>
                 <div class="coords">RA 5h28m, Dec +35°</div>
                 <img src="targets/clusters/m38/m38_2021-01-29.png" class="thumbnail" alt="M38" onclick="openModal('targets/clusters/m38/m38_2021-01-29.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M36</div>
-                <div class="messier-name">Open Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_36" target="_blank" rel="noopener" title="Look up Open Cluster on Wikipedia">Open Cluster</a></div>
                 <div class="coords">RA 5h36m, Dec +34°</div>
                 <img src="targets/clusters/m36/m36_2026-01-29.png" class="thumbnail" alt="M36" onclick="openModal('targets/clusters/m36/m36_2026-01-29.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M37</div>
-                <div class="messier-name">Open Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_37" target="_blank" rel="noopener" title="Look up Open Cluster on Wikipedia">Open Cluster</a></div>
                 <div class="coords">RA 5h52m, Dec +32°</div>
                 <img src="targets/clusters/m37/Stacked_34_M%2037_10.0s_IRCUT_20260126-190605.jpg" class="thumbnail" alt="M37" onclick="openModal('targets/clusters/m37/Stacked_34_M%2037_10.0s_IRCUT_20260126-190605.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M1</div>
-                <div class="messier-name">Crab Nebula</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Crab_Nebula" target="_blank" rel="noopener" title="Look up Crab Nebula on Wikipedia">Crab Nebula</a></div>
                 <div class="coords">RA 5h34m, Dec +22°</div>
                 <img src="targets/nebulae/m1/m1_2026-01-29.png" class="thumbnail" alt="M1" onclick="openModal('targets/nebulae/m1/m1_2026-01-29.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M78</div>
-                <div class="messier-name">Reflection Nebula</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_78" target="_blank" rel="noopener" title="Look up Reflection Nebula on Wikipedia">Reflection Nebula</a></div>
                 <div class="coords">RA 5h46m, Dec +0°</div>
                 <img src="targets/nebulae/m78/m78_2026-02-17.jpg" class="thumbnail" alt="M78" onclick="openModal('targets/nebulae/m78/m78_2026-02-17.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M43</div>
-                <div class="messier-name">De Mairan's Nebula</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_43" target="_blank" rel="noopener" title="Look up De Mairan's Nebula on Wikipedia">De Mairan's Nebula</a></div>
                 <div class="coords">RA 5h35m, Dec -5°</div>
                 <img src="targets/nebulae/m43/Stacked_44_M%2043_10.0s_LP_20260131-202858.jpg" class="thumbnail" alt="M43" onclick="openModal('targets/nebulae/m43/Stacked_44_M%2043_10.0s_LP_20260131-202858.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M42</div>
-                <div class="messier-name">Orion Nebula</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Orion_Nebula" target="_blank" rel="noopener" title="Look up Orion Nebula on Wikipedia">Orion Nebula</a></div>
                 <div class="coords">RA 5h35m, Dec -5°</div>
                 <img src="targets/nebulae/m42/m42_2026-02-17.jpg" class="thumbnail" alt="M42" onclick="openModal('targets/nebulae/m42/m42_2026-02-17.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M79</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_79" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 5h24m, Dec -24°</div>
                 <img src="targets/clusters/m79/Stacked_92_M%2079_10.0s_IRCUT_20260131-213311.jpg" class="thumbnail" alt="M79" onclick="openModal('targets/clusters/m79/Stacked_92_M%2079_10.0s_IRCUT_20260131-213311.jpg')" style="cursor: pointer;">
             </div>
@@ -489,13 +503,13 @@
             <div class="ra-header">RA 6h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M35</div>
-                <div class="messier-name">Open Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_35" target="_blank" rel="noopener" title="Look up Open Cluster on Wikipedia">Open Cluster</a></div>
                 <div class="coords">RA 6h8m, Dec +24°</div>
                 <img src="targets/clusters/m35/m35_2026-01-23.png" class="thumbnail" alt="M35" onclick="openModal('targets/clusters/m35/m35_2026-01-23.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M41</div>
-                <div class="messier-name">Open Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_41" target="_blank" rel="noopener" title="Look up Open Cluster on Wikipedia">Open Cluster</a></div>
                 <div class="coords">RA 6h46m, Dec -20°</div>
                 <img src="targets/clusters/m41/Stacked_4_M%2041_10.0s_IRCUT_20260126-220904.jpg" class="thumbnail" alt="M41" onclick="openModal('targets/clusters/m41/Stacked_4_M%2041_10.0s_IRCUT_20260126-220904.jpg')" style="cursor: pointer;">
             </div>
@@ -504,25 +518,25 @@
             <div class="ra-header">RA 7h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M50</div>
-                <div class="messier-name">Open Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_50" target="_blank" rel="noopener" title="Look up Open Cluster on Wikipedia">Open Cluster</a></div>
                 <div class="coords">RA 7h3m, Dec -8°</div>
                 <img src="targets/clusters/m50/Stacked_29_M%2050_10.0s_IRCUT_20260131-210943.jpg" class="thumbnail" alt="M50" onclick="openModal('targets/clusters/m50/Stacked_29_M%2050_10.0s_IRCUT_20260131-210943.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M47</div>
-                <div class="messier-name">Open Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_47" target="_blank" rel="noopener" title="Look up Open Cluster on Wikipedia">Open Cluster</a></div>
                 <div class="coords">RA 7h36m, Dec -14°</div>
                 <img src="targets/clusters/m47/Stacked_51_M%2047_10.0s_IRCUT_20260131-221521.jpg" class="thumbnail" alt="M47" onclick="openModal('targets/clusters/m47/Stacked_51_M%2047_10.0s_IRCUT_20260131-221521.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M46</div>
-                <div class="messier-name">Open Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_46" target="_blank" rel="noopener" title="Look up Open Cluster on Wikipedia">Open Cluster</a></div>
                 <div class="coords">RA 7h41m, Dec -14°</div>
                 <img src="targets/clusters/m46/Stacked_60_M%2046_10.0s_IRCUT_20260131-215821.jpg" class="thumbnail" alt="M46" onclick="openModal('targets/clusters/m46/Stacked_60_M%2046_10.0s_IRCUT_20260131-215821.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M93</div>
-                <div class="messier-name">Open Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_93" target="_blank" rel="noopener" title="Look up Open Cluster on Wikipedia">Open Cluster</a></div>
                 <div class="coords">RA 7h44m, Dec -23°</div>
                 <img src="targets/clusters/m93/Stacked_121_M%2093_10.0s_IRCUT_20260131-224711.jpg" class="thumbnail" alt="M93" onclick="openModal('targets/clusters/m93/Stacked_121_M%2093_10.0s_IRCUT_20260131-224711.jpg')" style="cursor: pointer;">
             </div>
@@ -531,19 +545,19 @@
             <div class="ra-header">RA 8h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M44</div>
-                <div class="messier-name">Beehive Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Beehive_Cluster" target="_blank" rel="noopener" title="Look up Beehive Cluster on Wikipedia">Beehive Cluster</a></div>
                 <div class="coords">RA 8h40m, Dec +19°</div>
                 <img src="targets/clusters/m44/m44_2026-01-29.png" class="thumbnail" alt="M44" onclick="openModal('targets/clusters/m44/m44_2026-01-29.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M67</div>
-                <div class="messier-name">Open Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_67" target="_blank" rel="noopener" title="Look up Open Cluster on Wikipedia">Open Cluster</a></div>
                 <div class="coords">RA 8h50m, Dec +11°</div>
                 <img src="targets/clusters/m67/m67_2026-01-30.png" class="thumbnail" alt="M67" onclick="openModal('targets/clusters/m67/m67_2026-01-30.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M48</div>
-                <div class="messier-name">Open Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_48" target="_blank" rel="noopener" title="Look up Open Cluster on Wikipedia">Open Cluster</a></div>
                 <div class="coords">RA 8h13m, Dec -5°</div>
                 <img src="targets/clusters/m48/m48_2026-01-30.png" class="thumbnail" alt="M48" onclick="openModal('targets/clusters/m48/m48_2026-01-30.png')" style="cursor: pointer;">
             </div>
@@ -552,13 +566,13 @@
             <div class="ra-header">RA 9h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M82</div>
-                <div class="messier-name">Cigar Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_82" target="_blank" rel="noopener" title="Look up Cigar Galaxy on Wikipedia">Cigar Galaxy</a></div>
                 <div class="coords">RA 9h55m, Dec +69°</div>
                 <img src="targets/galaxies/m82/Stacked_91_M%2082_10.0s_IRCUT_20260202-191001.jpg" class="thumbnail" alt="M82" onclick="openModal('targets/galaxies/m82/Stacked_91_M%2082_10.0s_IRCUT_20260202-191001.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M81</div>
-                <div class="messier-name">Bode's Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_81" target="_blank" rel="noopener" title="Look up Bode's Galaxy on Wikipedia">Bode's Galaxy</a></div>
                 <div class="coords">RA 9h55m, Dec +69°</div>
                 <img src="targets/galaxies/m81/M81_2026-01-15.png" class="thumbnail" alt="M81" onclick="openModal('targets/galaxies/m81/M81_2026-01-15.png')" style="cursor: pointer;">
             </div>
@@ -567,19 +581,19 @@
             <div class="ra-header">RA 10h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M105</div>
-                <div class="messier-name">Elliptical Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_105" target="_blank" rel="noopener" title="Look up Elliptical Galaxy on Wikipedia">Elliptical Galaxy</a></div>
                 <div class="coords">RA 10h47m, Dec +12°</div>
                 <img src="targets/galaxies/m105/Stacked_91_M%20105_10.0s_IRCUT_20260131-235233.jpg" class="thumbnail" alt="M105" onclick="openModal('targets/galaxies/m105/Stacked_91_M%20105_10.0s_IRCUT_20260131-235233.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M96</div>
-                <div class="messier-name">Spiral Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_96" target="_blank" rel="noopener" title="Look up Spiral Galaxy on Wikipedia">Spiral Galaxy</a></div>
                 <div class="coords">RA 10h46m, Dec +11°</div>
                 <img src="targets/galaxies/m96/2026-03-20/m96/Stacked_158_M%2096_10.0s_IRCUT_20260320-231105.jpg" class="thumbnail" alt="M96" onclick="openModal('targets/galaxies/m96/2026-03-20/m96/Stacked_158_M%2096_10.0s_IRCUT_20260320-231105.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M95</div>
-                <div class="messier-name">Barred Spiral Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_95" target="_blank" rel="noopener" title="Look up Barred Spiral Galaxy on Wikipedia">Barred Spiral Galaxy</a></div>
                 <div class="coords">RA 10h44m, Dec +11°</div>
                 <img src="targets/galaxies/m95/m95_2026-03-20.jpg" class="thumbnail" alt="M95" onclick="openModal('targets/galaxies/m95/m95_2026-03-20.jpg')" style="cursor: pointer;">
             </div>
@@ -588,31 +602,31 @@
             <div class="ra-header">RA 11h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M108</div>
-                <div class="messier-name">Spiral Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_108" target="_blank" rel="noopener" title="Look up Spiral Galaxy on Wikipedia">Spiral Galaxy</a></div>
                 <div class="coords">RA 11h11m, Dec +55°</div>
                 <img src="targets/galaxies/m108/m108_2026-04-18.jpg" class="thumbnail" alt="M108" onclick="openModal('targets/galaxies/m108/m108_2026-04-18.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M97</div>
-                <div class="messier-name">Owl Nebula</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Owl_Nebula" target="_blank" rel="noopener" title="Look up Owl Nebula on Wikipedia">Owl Nebula</a></div>
                 <div class="coords">RA 11h14m, Dec +55°</div>
                 <img src="targets/nebulae/m97/m97_2026-04-18.jpg" class="thumbnail" alt="M97" onclick="openModal('targets/nebulae/m97/m97_2026-04-18.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M109</div>
-                <div class="messier-name">Barred Spiral Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_109" target="_blank" rel="noopener" title="Look up Barred Spiral Galaxy on Wikipedia">Barred Spiral Galaxy</a></div>
                 <div class="coords">RA 11h57m, Dec +53°</div>
                 <img src="targets/galaxies/m109/m109_2026-04-22.jpg" class="thumbnail" alt="M109" onclick="openModal('targets/galaxies/m109/m109_2026-04-22.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M65</div>
-                <div class="messier-name">Spiral Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_65" target="_blank" rel="noopener" title="Look up Spiral Galaxy on Wikipedia">Spiral Galaxy</a></div>
                 <div class="coords">RA 11h18m, Dec +13°</div>
                 <img src="targets/galaxies/m65/m65_2026-04-22.jpg" class="thumbnail" alt="M65" onclick="openModal('targets/galaxies/m65/m65_2026-04-22.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M66</div>
-                <div class="messier-name">Spiral Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_66" target="_blank" rel="noopener" title="Look up Spiral Galaxy on Wikipedia">Spiral Galaxy</a></div>
                 <div class="coords">RA 11h19m, Dec +12°</div>
                 <img src="targets/galaxies/m66/m66_2026-03-20.jpg" class="thumbnail" alt="M66" onclick="openModal('targets/galaxies/m66/m66_2026-03-20.jpg')" style="cursor: pointer;">
             </div>
@@ -621,133 +635,133 @@
             <div class="ra-header">RA 12h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M40</div>
-                <div class="messier-name">Winnecke 4</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Winnecke_4" target="_blank" rel="noopener" title="Look up Winnecke 4 on Wikipedia">Winnecke 4</a></div>
                 <div class="coords">RA 12h22m, Dec +58°</div>
                 <img src="targets/stars/m40/m40_2026-04-22.jpg" class="thumbnail" alt="M40" onclick="openModal('targets/stars/m40/m40_2026-04-22.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M106</div>
-                <div class="messier-name">Spiral Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_106" target="_blank" rel="noopener" title="Look up Spiral Galaxy on Wikipedia">Spiral Galaxy</a></div>
                 <div class="coords">RA 12h19m, Dec +47°</div>
                 <img src="targets/galaxies/m106/m106_2026-04-22.jpg" class="thumbnail" alt="M106" onclick="openModal('targets/galaxies/m106/m106_2026-04-22.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M94</div>
-                <div class="messier-name">Spiral Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_94" target="_blank" rel="noopener" title="Look up Spiral Galaxy on Wikipedia">Spiral Galaxy</a></div>
                 <div class="coords">RA 12h50m, Dec +41°</div>
                 <img src="targets/galaxies/m94/m94_2026-04-22.jpg" class="thumbnail" alt="M94" onclick="openModal('targets/galaxies/m94/m94_2026-04-22.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M64</div>
-                <div class="messier-name">Black Eye Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Black_Eye_Galaxy" target="_blank" rel="noopener" title="Look up Black Eye Galaxy on Wikipedia">Black Eye Galaxy</a></div>
                 <div class="coords">RA 12h56m, Dec +21°</div>
                 <img src="targets/galaxies/m64/m64_2026-04-22.jpg" class="thumbnail" alt="M64" onclick="openModal('targets/galaxies/m64/m64_2026-04-22.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M85</div>
-                <div class="messier-name">Lenticular Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_85" target="_blank" rel="noopener" title="Look up Lenticular Galaxy on Wikipedia">Lenticular Galaxy</a></div>
                 <div class="coords">RA 12h25m, Dec +18°</div>
                 <img src="targets/galaxies/m85/m85_2026-04-22.jpg" class="thumbnail" alt="M85" onclick="openModal('targets/galaxies/m85/m85_2026-04-22.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M100</div>
-                <div class="messier-name">Spiral Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_100" target="_blank" rel="noopener" title="Look up Spiral Galaxy on Wikipedia">Spiral Galaxy</a></div>
                 <div class="coords">RA 12h22m, Dec +15°</div>
                 <img src="targets/galaxies/m100/m100_2026-04-22.jpg" class="thumbnail" alt="M100" onclick="openModal('targets/galaxies/m100/m100_2026-04-22.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M98</div>
-                <div class="messier-name">Spiral Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_98" target="_blank" rel="noopener" title="Look up Spiral Galaxy on Wikipedia">Spiral Galaxy</a></div>
                 <div class="coords">RA 12h13m, Dec +14°</div>
                 <img src="targets/galaxies/m98/m98_2026-04-22.jpg" class="thumbnail" alt="M98" onclick="openModal('targets/galaxies/m98/m98_2026-04-22.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M91</div>
-                <div class="messier-name">Barred Spiral Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_91" target="_blank" rel="noopener" title="Look up Barred Spiral Galaxy on Wikipedia">Barred Spiral Galaxy</a></div>
                 <div class="coords">RA 12h35m, Dec +14°</div>
                 <img src="targets/galaxies/m91/M91_2026-05-09.png" class="thumbnail" alt="M91" onclick="openModal('targets/galaxies/m91/M91_2026-05-09.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M88</div>
-                <div class="messier-name">Spiral Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_88" target="_blank" rel="noopener" title="Look up Spiral Galaxy on Wikipedia">Spiral Galaxy</a></div>
                 <div class="coords">RA 12h31m, Dec +14°</div>
                 <img src="targets/galaxies/m88/M88_2026-05-09.png" class="thumbnail" alt="M88" onclick="openModal('targets/galaxies/m88/M88_2026-05-09.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M99</div>
-                <div class="messier-name">Spiral Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_99" target="_blank" rel="noopener" title="Look up Spiral Galaxy on Wikipedia">Spiral Galaxy</a></div>
                 <div class="coords">RA 12h18m, Dec +14°</div>
                 <img src="targets/galaxies/m99/m99_2026-04-22.jpg" class="thumbnail" alt="M99" onclick="openModal('targets/galaxies/m99/m99_2026-04-22.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M90</div>
-                <div class="messier-name">Spiral Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_90" target="_blank" rel="noopener" title="Look up Spiral Galaxy on Wikipedia">Spiral Galaxy</a></div>
                 <div class="coords">RA 12h36m, Dec +13°</div>
                 <img src="targets/galaxies/m90/M90_2026-05-09.png" class="thumbnail" alt="M90" onclick="openModal('targets/galaxies/m90/M90_2026-05-09.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M86</div>
-                <div class="messier-name">Lenticular Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_86" target="_blank" rel="noopener" title="Look up Lenticular Galaxy on Wikipedia">Lenticular Galaxy</a></div>
                 <div class="coords">RA 12h25m, Dec +12°</div>
                 <img src="targets/galaxies/m86/M86_2026-05-09.png" class="thumbnail" alt="M86" onclick="openModal('targets/galaxies/m86/M86_2026-05-09.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M84</div>
-                <div class="messier-name">Lenticular Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_84" target="_blank" rel="noopener" title="Look up Lenticular Galaxy on Wikipedia">Lenticular Galaxy</a></div>
                 <div class="coords">RA 12h25m, Dec +12°</div>
                 <img src="targets/galaxies/m84/M84_2026-05-10.png" class="thumbnail" alt="M84" onclick="openModal('targets/galaxies/m84/M84_2026-05-10.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M89</div>
-                <div class="messier-name">Elliptical Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_89" target="_blank" rel="noopener" title="Look up Elliptical Galaxy on Wikipedia">Elliptical Galaxy</a></div>
                 <div class="coords">RA 12h35m, Dec +12°</div>
                 <img src="targets/galaxies/m89/M89_2026-05-09.png" class="thumbnail" alt="M89" onclick="openModal('targets/galaxies/m89/M89_2026-05-09.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M87</div>
-                <div class="messier-name">Virgo A</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_87" target="_blank" rel="noopener" title="Look up Virgo A on Wikipedia">Virgo A</a></div>
                 <div class="coords">RA 12h30m, Dec +12°</div>
                 <img src="targets/galaxies/m87/M87_2026-05-09.png" class="thumbnail" alt="M87" onclick="openModal('targets/galaxies/m87/M87_2026-05-09.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M58</div>
-                <div class="messier-name">Barred Spiral Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_58" target="_blank" rel="noopener" title="Look up Barred Spiral Galaxy on Wikipedia">Barred Spiral Galaxy</a></div>
                 <div class="coords">RA 12h37m, Dec +11°</div>
                 <img src="targets/galaxies/m58/M58_2026-05-10.png" class="thumbnail" alt="M58" onclick="openModal('targets/galaxies/m58/M58_2026-05-10.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M59</div>
-                <div class="messier-name">Elliptical Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_59" target="_blank" rel="noopener" title="Look up Elliptical Galaxy on Wikipedia">Elliptical Galaxy</a></div>
                 <div class="coords">RA 12h42m, Dec +11°</div>
                 <img src="targets/galaxies/m59/M59_2026-05-10.png" class="thumbnail" alt="M59" onclick="openModal('targets/galaxies/m59/M59_2026-05-10.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M60</div>
-                <div class="messier-name">Elliptical Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_60" target="_blank" rel="noopener" title="Look up Elliptical Galaxy on Wikipedia">Elliptical Galaxy</a></div>
                 <div class="coords">RA 12h43m, Dec +11°</div>
                 <img src="targets/galaxies/m60/M60_2026-05-10.png" class="thumbnail" alt="M60" onclick="openModal('targets/galaxies/m60/M60_2026-05-10.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M49</div>
-                <div class="messier-name">Elliptical Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_49" target="_blank" rel="noopener" title="Look up Elliptical Galaxy on Wikipedia">Elliptical Galaxy</a></div>
                 <div class="coords">RA 12h29m, Dec +8°</div>
                 <img src="targets/galaxies/m49/M49_2026-05-10.png" class="thumbnail" alt="M49" onclick="openModal('targets/galaxies/m49/M49_2026-05-10.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M61</div>
-                <div class="messier-name">Spiral Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_61" target="_blank" rel="noopener" title="Look up Spiral Galaxy on Wikipedia">Spiral Galaxy</a></div>
                 <div class="coords">RA 12h21m, Dec +4°</div>
                 <img src="targets/galaxies/m61/M61_2026-05-10.png" class="thumbnail" alt="M61" onclick="openModal('targets/galaxies/m61/M61_2026-05-10.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M104</div>
-                <div class="messier-name">Sombrero Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Sombrero_Galaxy" target="_blank" rel="noopener" title="Look up Sombrero Galaxy on Wikipedia">Sombrero Galaxy</a></div>
                 <div class="coords">RA 12h40m, Dec -11°</div>
                 <img src="targets/galaxies/m104/M104_2026-05-10.png" class="thumbnail" alt="M104" onclick="openModal('targets/galaxies/m104/M104_2026-05-10.png')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M68</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_68" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 12h39m, Dec -26°</div>
                 <img src="targets/clusters/m68/M68_2026-05-10.png" class="thumbnail" alt="M68" onclick="openModal('targets/clusters/m68/M68_2026-05-10.png')" style="cursor: pointer;">
             </div>
@@ -756,31 +770,31 @@
             <div class="ra-header">RA 13h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M51</div>
-                <div class="messier-name">Whirlpool Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Whirlpool_Galaxy" target="_blank" rel="noopener" title="Look up Whirlpool Galaxy on Wikipedia">Whirlpool Galaxy</a></div>
                 <div class="coords">RA 13h29m, Dec +47°</div>
                 <img src="targets/galaxies/m51/m51_2026-04-22.jpg" class="thumbnail" alt="M51" onclick="openModal('targets/galaxies/m51/m51_2026-04-22.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M63</div>
-                <div class="messier-name">Sunflower Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_63" target="_blank" rel="noopener" title="Look up Sunflower Galaxy on Wikipedia">Sunflower Galaxy</a></div>
                 <div class="coords">RA 13h15m, Dec +42°</div>
                 <img src="targets/galaxies/m63/m63_2026-04-22.jpg" class="thumbnail" alt="M63" onclick="openModal('targets/galaxies/m63/m63_2026-04-22.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M3</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_3" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 13h42m, Dec +28°</div>
                 <img src="targets/clusters/m3/m3_2026-04-22.jpg" class="thumbnail" alt="M3" onclick="openModal('targets/clusters/m3/m3_2026-04-22.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M53</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_53" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 13h12m, Dec +18°</div>
                 <img src="targets/clusters/m53/m53_2026-04-22.jpg" class="thumbnail" alt="M53" onclick="openModal('targets/clusters/m53/m53_2026-04-22.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M83</div>
-                <div class="messier-name">Southern Pinwheel</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_83" target="_blank" rel="noopener" title="Look up Southern Pinwheel on Wikipedia">Southern Pinwheel</a></div>
                 <div class="coords">RA 13h37m, Dec -29°</div>
                 <img src="targets/galaxies/m83/m83_2026-05-16.jpg" class="thumbnail" alt="M83" onclick="openModal('targets/galaxies/m83/m83_2026-05-16.jpg')" style="cursor: pointer;">
             </div>
@@ -789,7 +803,7 @@
             <div class="ra-header">RA 14h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M101</div>
-                <div class="messier-name">Pinwheel Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Pinwheel_Galaxy" target="_blank" rel="noopener" title="Look up Pinwheel Galaxy on Wikipedia">Pinwheel Galaxy</a></div>
                 <div class="coords">RA 14h3m, Dec +54°</div>
                 <img src="targets/galaxies/m101/m101_2026-04-22.jpg" class="thumbnail" alt="M101" onclick="openModal('targets/galaxies/m101/m101_2026-04-22.jpg')" style="cursor: pointer;">
             </div>
@@ -798,13 +812,13 @@
             <div class="ra-header">RA 15h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M102</div>
-                <div class="messier-name">Spindle Galaxy</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_102" target="_blank" rel="noopener" title="Look up Spindle Galaxy on Wikipedia">Spindle Galaxy</a></div>
                 <div class="coords">RA 15h5m, Dec +55°</div>
                 <img src="targets/galaxies/m102/m102_2026-05-16.jpg" class="thumbnail" alt="M102" onclick="openModal('targets/galaxies/m102/m102_2026-05-16.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M5</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_5" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 15h18m, Dec +2°</div>
                 <img src="targets/clusters/m5/m5_2026-05-29.jpg" class="thumbnail" alt="M5" onclick="openModal('targets/clusters/m5/m5_2026-05-29.jpg')" style="cursor: pointer;">
             </div>
@@ -813,37 +827,37 @@
             <div class="ra-header">RA 16h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M13</div>
-                <div class="messier-name">Hercules Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_13" target="_blank" rel="noopener" title="Look up Hercules Cluster on Wikipedia">Hercules Cluster</a></div>
                 <div class="coords">RA 16h41m, Dec +36°</div>
                 <img src="targets/clusters/m13/m13_2026-05-29.jpg" class="thumbnail" alt="M13" onclick="openModal('targets/clusters/m13/m13_2026-05-29.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M12</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_12" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 16h46m, Dec -1°</div>
                 <img src="targets/clusters/m12/m12_2026-05-29.jpg" class="thumbnail" alt="M12" onclick="openModal('targets/clusters/m12/m12_2026-05-29.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M10</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_10" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 16h56m, Dec -4°</div>
                 <img src="targets/clusters/m10/m10_2026-05-29.jpg" class="thumbnail" alt="M10" onclick="openModal('targets/clusters/m10/m10_2026-05-29.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M107</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_107" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 16h32m, Dec -13°</div>
                 <img src="targets/clusters/m107/m107_2026-06-08.jpg" class="thumbnail" alt="M107" onclick="openModal('targets/clusters/m107/m107_2026-06-08.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M80</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_80" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 16h16m, Dec -22°</div>
                 <img src="targets/clusters/m80/m80_2026-06-08.jpg" class="thumbnail" alt="M80" onclick="openModal('targets/clusters/m80/m80_2026-06-08.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M4</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_4" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 16h23m, Dec -26°</div>
                 <img src="targets/clusters/m4/m4_2026-06-08.jpg" class="thumbnail" alt="M4" onclick="openModal('targets/clusters/m4/m4_2026-06-08.jpg')" style="cursor: pointer;">
             </div>
@@ -852,49 +866,49 @@
             <div class="ra-header">RA 17h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M92</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_92" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 17h16m, Dec +43°</div>
                 <img src="targets/clusters/m92/m92_2026-05-29.jpg" class="thumbnail" alt="M92" onclick="openModal('targets/clusters/m92/m92_2026-05-29.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M14</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_14" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 17h37m, Dec -3°</div>
                 <img src="targets/clusters/m14/m14_2026-05-29.jpg" class="thumbnail" alt="M14" onclick="openModal('targets/clusters/m14/m14_2026-05-29.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M9</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_9" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 17h19m, Dec -18°</div>
                 <img src="targets/clusters/m9/m9_2026-06-08.jpg" class="thumbnail" alt="M9" onclick="openModal('targets/clusters/m9/m9_2026-06-08.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M23</div>
-                <div class="messier-name">Open Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_23" target="_blank" rel="noopener" title="Look up Open Cluster on Wikipedia">Open Cluster</a></div>
                 <div class="coords">RA 17h56m, Dec -19°</div>
                 <img src="targets/clusters/m23/m23_2026-06-08.jpg" class="thumbnail" alt="M23" onclick="openModal('targets/clusters/m23/m23_2026-06-08.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M19</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_19" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 17h2m, Dec -26°</div>
                 <img src="targets/clusters/m19/m19_2026-06-08.jpg" class="thumbnail" alt="M19" onclick="openModal('targets/clusters/m19/m19_2026-06-08.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M62</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_62" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 17h1m, Dec -30°</div>
                 <img src="targets/clusters/m62/m62_2026-08-01.jpg" class="thumbnail" alt="M62" onclick="openModal('targets/clusters/m62/m62_2026-08-01.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M6</div>
-                <div class="messier-name">Butterfly Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Butterfly_Cluster" target="_blank" rel="noopener" title="Look up Butterfly Cluster on Wikipedia">Butterfly Cluster</a></div>
                 <div class="coords">RA 17h40m, Dec -32°</div>
                 <img src="targets/clusters/m6/m6_2026-08-01.jpg" class="thumbnail" alt="M6" onclick="openModal('targets/clusters/m6/m6_2026-08-01.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M7</div>
-                <div class="messier-name">Ptolemy Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_7" target="_blank" rel="noopener" title="Look up Ptolemy Cluster on Wikipedia">Ptolemy Cluster</a></div>
                 <div class="coords">RA 17h53m, Dec -34°</div>
                 <img src="targets/clusters/m7/m7_2026-08-01.jpg" class="thumbnail" alt="M7" onclick="openModal('targets/clusters/m7/m7_2026-08-01.jpg')" style="cursor: pointer;">
             </div>
@@ -903,97 +917,97 @@
             <div class="ra-header">RA 18h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M57</div>
-                <div class="messier-name">Ring Nebula</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Ring_Nebula" target="_blank" rel="noopener" title="Look up Ring Nebula on Wikipedia">Ring Nebula</a></div>
                 <div class="coords">RA 18h53m, Dec +33°</div>
                 <img src="targets/nebulae/m57/m57_2026-05-29.jpg" class="thumbnail" alt="M57" onclick="openModal('targets/nebulae/m57/m57_2026-05-29.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item">
                 <div class="messier-number">M11</div>
-                <div class="messier-name">Wild Duck Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Wild_Duck_Cluster" target="_blank" rel="noopener" title="Look up Wild Duck Cluster on Wikipedia">Wild Duck Cluster</a></div>
                 <div class="coords">RA 18h51m, Dec -6°</div>
                 <div class="placeholder">?</div>
             </div>
             <div class="messier-item">
                 <div class="messier-number">M26</div>
-                <div class="messier-name">Open Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_26" target="_blank" rel="noopener" title="Look up Open Cluster on Wikipedia">Open Cluster</a></div>
                 <div class="coords">RA 18h45m, Dec -9°</div>
                 <div class="placeholder">?</div>
             </div>
             <div class="messier-item">
                 <div class="messier-number">M16</div>
-                <div class="messier-name">Eagle Nebula</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Eagle_Nebula" target="_blank" rel="noopener" title="Look up Eagle Nebula on Wikipedia">Eagle Nebula</a></div>
                 <div class="coords">RA 18h18m, Dec -13°</div>
                 <div class="placeholder">?</div>
             </div>
             <div class="messier-item">
                 <div class="messier-number">M17</div>
-                <div class="messier-name">Omega Nebula</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Omega_Nebula" target="_blank" rel="noopener" title="Look up Omega Nebula on Wikipedia">Omega Nebula</a></div>
                 <div class="coords">RA 18h20m, Dec -16°</div>
                 <div class="placeholder">?</div>
             </div>
             <div class="messier-item">
                 <div class="messier-number">M18</div>
-                <div class="messier-name">Open Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_18" target="_blank" rel="noopener" title="Look up Open Cluster on Wikipedia">Open Cluster</a></div>
                 <div class="coords">RA 18h19m, Dec -17°</div>
                 <div class="placeholder">?</div>
             </div>
             <div class="messier-item">
                 <div class="messier-number">M24</div>
-                <div class="messier-name">Sagittarius Star Cloud</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Small_Sagittarius_Star_Cloud" target="_blank" rel="noopener" title="Look up Sagittarius Star Cloud on Wikipedia">Sagittarius Star Cloud</a></div>
                 <div class="coords">RA 18h16m, Dec -18°</div>
                 <div class="placeholder">?</div>
             </div>
             <div class="messier-item">
                 <div class="messier-number">M25</div>
-                <div class="messier-name">Open Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_25" target="_blank" rel="noopener" title="Look up Open Cluster on Wikipedia">Open Cluster</a></div>
                 <div class="coords">RA 18h31m, Dec -19°</div>
                 <div class="placeholder">?</div>
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M21</div>
-                <div class="messier-name">Open Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_21" target="_blank" rel="noopener" title="Look up Open Cluster on Wikipedia">Open Cluster</a></div>
                 <div class="coords">RA 18h4m, Dec -22°</div>
                 <img src="targets/clusters/m21/m21_2026-08-01.jpg" class="thumbnail" alt="M21" onclick="openModal('targets/clusters/m21/m21_2026-08-01.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M20</div>
-                <div class="messier-name">Trifid Nebula</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Trifid_Nebula" target="_blank" rel="noopener" title="Look up Trifid Nebula on Wikipedia">Trifid Nebula</a></div>
                 <div class="coords">RA 18h2m, Dec -23°</div>
                 <img src="targets/nebulae/m20/m20_2026-08-01.jpg" class="thumbnail" alt="M20" onclick="openModal('targets/nebulae/m20/m20_2026-08-01.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item">
                 <div class="messier-number">M22</div>
-                <div class="messier-name">Sagittarius Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_22" target="_blank" rel="noopener" title="Look up Sagittarius Cluster on Wikipedia">Sagittarius Cluster</a></div>
                 <div class="coords">RA 18h36m, Dec -23°</div>
                 <div class="placeholder">?</div>
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M8</div>
-                <div class="messier-name">Lagoon Nebula</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Lagoon_Nebula" target="_blank" rel="noopener" title="Look up Lagoon Nebula on Wikipedia">Lagoon Nebula</a></div>
                 <div class="coords">RA 18h3m, Dec -24°</div>
                 <img src="targets/nebulae/m8/m8_2026-08-01.jpg" class="thumbnail" alt="M8" onclick="openModal('targets/nebulae/m8/m8_2026-08-01.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M28</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_28" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 18h24m, Dec -24°</div>
                 <img src="targets/clusters/m28/m28_2026-08-01.jpg" class="thumbnail" alt="M28" onclick="openModal('targets/clusters/m28/m28_2026-08-01.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M54</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_54" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 18h55m, Dec -30°</div>
                 <img src="targets/clusters/m54/m54_2026-08-01.jpg" class="thumbnail" alt="M54" onclick="openModal('targets/clusters/m54/m54_2026-08-01.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M70</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_70" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 18h43m, Dec -32°</div>
                 <img src="targets/clusters/m70/m70_2026-08-01.jpg" class="thumbnail" alt="M70" onclick="openModal('targets/clusters/m70/m70_2026-08-01.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M69</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_69" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 18h31m, Dec -32°</div>
                 <img src="targets/clusters/m69/m69_2026-08-01.jpg" class="thumbnail" alt="M69" onclick="openModal('targets/clusters/m69/m69_2026-08-01.jpg')" style="cursor: pointer;">
             </div>
@@ -1002,25 +1016,25 @@
             <div class="ra-header">RA 19h</div>
             <div class="messier-item captured">
                 <div class="messier-number">M56</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_56" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 19h16m, Dec +30°</div>
                 <img src="targets/clusters/m56/m56_2026-05-29.jpg" class="thumbnail" alt="M56" onclick="openModal('targets/clusters/m56/m56_2026-05-29.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M27</div>
-                <div class="messier-name">Dumbbell Nebula</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Dumbbell_Nebula" target="_blank" rel="noopener" title="Look up Dumbbell Nebula on Wikipedia">Dumbbell Nebula</a></div>
                 <div class="coords">RA 19h59m, Dec +22°</div>
                 <img src="targets/nebulae/m27/m27_2026-05-29.jpg" class="thumbnail" alt="M27" onclick="openModal('targets/nebulae/m27/m27_2026-05-29.jpg')" style="cursor: pointer;">
             </div>
             <div class="messier-item">
                 <div class="messier-number">M71</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_71" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 19h53m, Dec +18°</div>
                 <div class="placeholder">?</div>
             </div>
             <div class="messier-item captured">
                 <div class="messier-number">M55</div>
-                <div class="messier-name">Globular Cluster</div>
+                <div class="messier-name"><a class="wiki-link" href="https://en.wikipedia.org/wiki/Messier_55" target="_blank" rel="noopener" title="Look up Globular Cluster on Wikipedia">Globular Cluster</a></div>
                 <div class="coords">RA 19h40m, Dec -30°</div>
                 <img src="targets/clusters/m55/m55_2026-08-01.jpg" class="thumbnail" alt="M55" onclick="openModal('targets/clusters/m55/m55_2026-08-01.jpg')" style="cursor: pointer;">
             </div>

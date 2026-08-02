@@ -3,6 +3,7 @@ import os
 import re
 from pathlib import Path
 from urllib.parse import quote
+from wikipedia_links import messier_url, anchor
 
 # Find all stacked Messier images
 def find_messier_images():
@@ -283,6 +284,20 @@ def generate_html():
         .modal-close:hover {{
             color: #4a9eff;
         }}
+        .wiki-link {{
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px dotted currentColor;
+        }}
+        .wiki-link:hover {{
+            opacity: 0.75;
+            border-bottom-style: solid;
+        }}
+        .wiki-link::after {{
+            content: " \2197";
+            font-size: 0.75em;
+            opacity: 0.6;
+        }}
     </style>
 </head>
 <body>
@@ -312,7 +327,7 @@ def generate_html():
             status = '<div class="status not-captured">Not yet captured</div>'
 
         html += f"""        <div class="{card_class}">
-            <h3>{name}</h3>
+            <h3>{anchor(messier_url(m_num), name)}</h3>
             <div class="image-container">
                 {img_html}
             </div>

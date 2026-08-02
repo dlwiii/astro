@@ -3,6 +3,7 @@ import os
 import re
 from pathlib import Path
 from urllib.parse import quote
+from wikipedia_links import object_url, anchor
 
 def find_all_target_images():
     """Find the best image for each target across all categories."""
@@ -337,6 +338,20 @@ def generate_html():
         .modal-close:hover {{
             color: #4a9eff;
         }}
+        .wiki-link {{
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px dotted currentColor;
+        }}
+        .wiki-link:hover {{
+            opacity: 0.75;
+            border-bottom-style: solid;
+        }}
+        .wiki-link::after {{
+            content: " \2197";
+            font-size: 0.75em;
+            opacity: 0.6;
+        }}
     </style>
 </head>
 <body>
@@ -361,7 +376,7 @@ def generate_html():
             path_encoded = quote(info['path'])
             html += f"""
             <div class="target-card" data-name="{name}" data-type="galaxy" onclick="openModal('{path_encoded}')">
-                <div class="target-name">{info['display_name']}</div>
+                <div class="target-name">{anchor(object_url(info['display_name']), info['display_name'])}</div>
                 <div class="target-type">Galaxy</div>
                 <img src="{path_encoded}" class="target-image" alt="{info['display_name']}">
             </div>
@@ -382,7 +397,7 @@ def generate_html():
             path_encoded = quote(info['path'])
             html += f"""
             <div class="target-card" data-name="{name}" data-type="cluster" onclick="openModal('{path_encoded}')">
-                <div class="target-name">{info['display_name']}</div>
+                <div class="target-name">{anchor(object_url(info['display_name']), info['display_name'])}</div>
                 <div class="target-type">Cluster</div>
                 <img src="{path_encoded}" class="target-image" alt="{info['display_name']}">
             </div>
@@ -403,7 +418,7 @@ def generate_html():
             path_encoded = quote(info['path'])
             html += f"""
             <div class="target-card" data-name="{name}" data-type="nebula" onclick="openModal('{path_encoded}')">
-                <div class="target-name">{info['display_name']}</div>
+                <div class="target-name">{anchor(object_url(info['display_name']), info['display_name'])}</div>
                 <div class="target-type">Nebula</div>
                 <img src="{path_encoded}" class="target-image" alt="{info['display_name']}">
             </div>
@@ -424,7 +439,7 @@ def generate_html():
             path_encoded = quote(info['path'])
             html += f"""
             <div class="target-card" data-name="{name}" data-type="star" onclick="openModal('{path_encoded}')">
-                <div class="target-name">{info['display_name']}</div>
+                <div class="target-name">{anchor(object_url(info['display_name']), info['display_name'])}</div>
                 <div class="target-type">Star</div>
                 <img src="{path_encoded}" class="target-image" alt="{info['display_name']}">
             </div>

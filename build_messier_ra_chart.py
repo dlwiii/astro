@@ -3,6 +3,7 @@ import os
 import re
 from pathlib import Path
 from urllib.parse import quote
+from wikipedia_links import messier_url, anchor
 
 # Find all stacked Messier images
 def find_messier_images():
@@ -463,6 +464,20 @@ def generate_ra_chart_html():
             background: #4a9eff;
             color: #000;
         }}
+        .wiki-link {{
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px dotted currentColor;
+        }}
+        .wiki-link:hover {{
+            opacity: 0.75;
+            border-bottom-style: solid;
+        }}
+        .wiki-link::after {{
+            content: " \2197";
+            font-size: 0.75em;
+            opacity: 0.6;
+        }}
     </style>
 </head>
 <body>
@@ -547,7 +562,7 @@ def generate_ra_chart_html():
 
             html += f"""            <div class="{item_class}">
                 <div class="messier-number">M{m_num}</div>
-                <div class="messier-name">{name}</div>
+                <div class="messier-name">{anchor(messier_url(m_num), name)}</div>
                 <div class="coords">{coord_str}</div>
                 {img_html}
             </div>
