@@ -13,7 +13,7 @@ Visit the gallery at: [https://dlwiii.github.io/astro/](https://dlwiii.github.io
 
 ## Current Progress
 
-17 of 110 Messier objects captured (15.5%)
+82 of 110 Messier objects captured (74.5%)
 
 ## Equipment
 
