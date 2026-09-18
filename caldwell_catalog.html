@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Caldwell Catalog Progress</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .filter-box {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .filter-box input {
+            padding: 10px;
+            width: 300px;
+            font-size: 16px;
+            border: 2px solid #4a9eff;
+            border-radius: 5px;
+            background: #1a1a1a;
+            color: #fff;
+        }
+        .filter-box input:focus {
+            outline: none;
+            border-color: #6bb6ff;
+        }
+        .stats {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .caldwell-card {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 15px;
+            text-align: center;
+            border: 2px solid #333;
+        }
+        .caldwell-card.captured {
+            border-color: #4a9eff;
+        }
+        .caldwell-card h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.1em;
+        }
+        .image-container {
+            width: 100%%;
+            height: 250px;
+            background: #0a0a0a;
+            border-radius: 4px;
+            text-align: center;
+            line-height: 250px;
+        }
+        .image-container img {
+            max-width: 100%%;
+            max-height: 250px;
+            vertical-align: middle;
+            transition: opacity 0.2s;
+            cursor: pointer;
+        }
+        .image-container img:hover {
+            opacity: 0.8;
+        }
+        .placeholder {
+            color: #555;
+            font-size: 3em;
+        }
+        .status {
+            margin-top: 10px;
+            font-size: 0.9em;
+            color: #4a9eff;
+        }
+        .status.not-captured {
+            color: #666;
+        }
+        .nav-home {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            padding: 10px 20px;
+            background: #1a1a1a;
+            border: 2px solid #4a9eff;
+            border-radius: 5px;
+            color: #4a9eff;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: all 0.2s;
+            z-index: 100;
+        }
+        .nav-home:hover {
+            background: #4a9eff;
+            color: #000;
+        }
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.95);
+            cursor: pointer;
+        }
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            border: 3px solid #4a9eff;
+            border-radius: 8px;
+            box-shadow: 0 0 30px rgba(74, 158, 255, 0.5);
+        }
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .modal-close:hover {
+            color: #4a9eff;
+        }
+        .wiki-link {
+            color: inherit;
+            text-decoration: none;
+            border-bottom: 1px dotted currentColor;
+        }
+        .wiki-link:hover {
+            opacity: 0.75;
+            border-bottom-style: solid;
+        }
+        .wiki-link::after {
+            content: " \2197";
+            font-size: 0.75em;
+            opacity: 0.6;
+        }
+    </style>
+    <style>
+        .designation {
+            font-size: 0.85em;
+            opacity: 0.65;
+            margin: -6px 0 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="nav-home">← Home</a>
+    <h1>Caldwell Catalog Progress</h1>
+    <div class="filter-box">
+        <input type="text" id="filterInput" placeholder="Filter objects (e.g., C14, NGC 869, Galaxy, Nebula)..." onkeyup="filterGallery()">
+    </div>
+    <div class="stats">
+        <strong>6</strong> of <strong>109</strong> objects captured (5.5%)
+    </div>
+    <div class="gallery">
+        <div class="caldwell-card captured">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_188" target="_blank" rel="noopener" title="Look up C1 - Polarissima Cluster on Wikipedia">C1 - Polarissima Cluster</a></h3>
+            <div class="designation">NGC 188 &middot; Cepheus</div>
+            <div class="image-container">
+                <img src="targets/clusters/c1/Stacked_40_C%201_10.0s_IRCUT_20260202-203639.jpg.thumb.webp" loading="lazy" alt="C1 - Polarissima Cluster" onclick="openModal('targets/clusters/c1/Stacked_40_C%201_10.0s_IRCUT_20260202-203639.jpg')">
+            </div>
+            <div class="status">✓ Captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_40" target="_blank" rel="noopener" title="Look up C2 - Bow-Tie Nebula on Wikipedia">C2 - Bow-Tie Nebula</a></h3>
+            <div class="designation">NGC 40 &middot; Cepheus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_4236" target="_blank" rel="noopener" title="Look up C3 - NGC 4236 on Wikipedia">C3 - NGC 4236</a></h3>
+            <div class="designation">NGC 4236 &middot; Draco</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Iris_Nebula" target="_blank" rel="noopener" title="Look up C4 - Iris Nebula on Wikipedia">C4 - Iris Nebula</a></h3>
+            <div class="designation">NGC 7023 &middot; Cepheus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card captured">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/IC_342" target="_blank" rel="noopener" title="Look up C5 - Hidden Galaxy on Wikipedia">C5 - Hidden Galaxy</a></h3>
+            <div class="designation">IC 342 &middot; Camelopardalis</div>
+            <div class="image-container">
+                <img src="targets/galaxies/c5/c5_2026-02-04.png.thumb.webp" loading="lazy" alt="C5 - Hidden Galaxy" onclick="openModal('targets/galaxies/c5/c5_2026-02-04.jpg')">
+            </div>
+            <div class="status">✓ Captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Cat%27s_Eye_Nebula" target="_blank" rel="noopener" title="Look up C6 - Cat's Eye Nebula on Wikipedia">C6 - Cat's Eye Nebula</a></h3>
+            <div class="designation">NGC 6543 &middot; Draco</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_2403" target="_blank" rel="noopener" title="Look up C7 - NGC 2403 on Wikipedia">C7 - NGC 2403</a></h3>
+            <div class="designation">NGC 2403 &middot; Camelopardalis</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_559" target="_blank" rel="noopener" title="Look up C8 - NGC 559 on Wikipedia">C8 - NGC 559</a></h3>
+            <div class="designation">NGC 559 &middot; Cassiopeia</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Sh_2-155" target="_blank" rel="noopener" title="Look up C9 - Cave Nebula on Wikipedia">C9 - Cave Nebula</a></h3>
+            <div class="designation">Sh2-155 &middot; Cepheus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_663" target="_blank" rel="noopener" title="Look up C10 - NGC 663 on Wikipedia">C10 - NGC 663</a></h3>
+            <div class="designation">NGC 663 &middot; Cassiopeia</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Bubble_Nebula" target="_blank" rel="noopener" title="Look up C11 - Bubble Nebula on Wikipedia">C11 - Bubble Nebula</a></h3>
+            <div class="designation">NGC 7635 &middot; Cassiopeia</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_6946" target="_blank" rel="noopener" title="Look up C12 - Fireworks Galaxy on Wikipedia">C12 - Fireworks Galaxy</a></h3>
+            <div class="designation">NGC 6946 &middot; Cepheus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_457" target="_blank" rel="noopener" title="Look up C13 - Owl Cluster, E.T. Cluster on Wikipedia">C13 - Owl Cluster, E.T. Cluster</a></h3>
+            <div class="designation">NGC 457 &middot; Cassiopeia</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card captured">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Double_Cluster" target="_blank" rel="noopener" title="Look up C14 - Double Cluster, h & χ Persei on Wikipedia">C14 - Double Cluster, h & χ Persei</a></h3>
+            <div class="designation">NGC 869, NGC 884 &middot; Perseus</div>
+            <div class="image-container">
+                <img src="targets/clusters/ngc869/2025-12-27/NGC869/Stacked_11_NGC%20869_10.0s_IRCUT_20251227-190858.jpg.thumb.webp" loading="lazy" alt="C14 - Double Cluster, h & χ Persei" onclick="openModal('targets/clusters/ngc869/2025-12-27/NGC869/Stacked_11_NGC%20869_10.0s_IRCUT_20251227-190858.jpg')">
+            </div>
+            <div class="status">✓ Captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_6826" target="_blank" rel="noopener" title="Look up C15 - Blinking Planetary on Wikipedia">C15 - Blinking Planetary</a></h3>
+            <div class="designation">NGC 6826 &middot; Cygnus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_7243" target="_blank" rel="noopener" title="Look up C16 - NGC 7243 on Wikipedia">C16 - NGC 7243</a></h3>
+            <div class="designation">NGC 7243 &middot; Lacerta</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_147" target="_blank" rel="noopener" title="Look up C17 - NGC 147 on Wikipedia">C17 - NGC 147</a></h3>
+            <div class="designation">NGC 147 &middot; Cassiopeia</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_185" target="_blank" rel="noopener" title="Look up C18 - NGC 185 on Wikipedia">C18 - NGC 185</a></h3>
+            <div class="designation">NGC 185 &middot; Cassiopeia</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card captured">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/IC_5146" target="_blank" rel="noopener" title="Look up C19 - Cocoon Nebula on Wikipedia">C19 - Cocoon Nebula</a></h3>
+            <div class="designation">IC 5146 &middot; Cygnus</div>
+            <div class="image-container">
+                <img src="targets/nebulae/c19/c19_2026-01-31.png.thumb.webp" loading="lazy" alt="C19 - Cocoon Nebula" onclick="openModal('targets/nebulae/c19/c19_2026-01-31.jpg')">
+            </div>
+            <div class="status">✓ Captured</div>
+        </div>
+        <div class="caldwell-card captured">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/North_America_Nebula" target="_blank" rel="noopener" title="Look up C20 - North America Nebula on Wikipedia">C20 - North America Nebula</a></h3>
+            <div class="designation">NGC 7000 &middot; Cygnus</div>
+            <div class="image-container">
+                <img src="targets/nebulae/c20/c20_fresh.png.thumb.webp" loading="lazy" alt="C20 - North America Nebula" onclick="openModal('targets/nebulae/c20/c20_fresh.jpg')">
+            </div>
+            <div class="status">✓ Captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_4449" target="_blank" rel="noopener" title="Look up C21 - NGC 4449 on Wikipedia">C21 - NGC 4449</a></h3>
+            <div class="designation">NGC 4449 &middot; Canes Venatici</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_7662" target="_blank" rel="noopener" title="Look up C22 - Blue Snowball on Wikipedia">C22 - Blue Snowball</a></h3>
+            <div class="designation">NGC 7662 &middot; Andromeda</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_891" target="_blank" rel="noopener" title="Look up C23 - Silver Sliver Galaxy on Wikipedia">C23 - Silver Sliver Galaxy</a></h3>
+            <div class="designation">NGC 891 &middot; Andromeda</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_1275" target="_blank" rel="noopener" title="Look up C24 - Perseus A on Wikipedia">C24 - Perseus A</a></h3>
+            <div class="designation">NGC 1275 &middot; Perseus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_2419" target="_blank" rel="noopener" title="Look up C25 - NGC 2419 on Wikipedia">C25 - NGC 2419</a></h3>
+            <div class="designation">NGC 2419 &middot; Lynx</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_4244" target="_blank" rel="noopener" title="Look up C26 - NGC 4244 on Wikipedia">C26 - NGC 4244</a></h3>
+            <div class="designation">NGC 4244 &middot; Canes Venatici</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Crescent_Nebula" target="_blank" rel="noopener" title="Look up C27 - Crescent Nebula on Wikipedia">C27 - Crescent Nebula</a></h3>
+            <div class="designation">NGC 6888 &middot; Cygnus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_752" target="_blank" rel="noopener" title="Look up C28 - NGC 752 on Wikipedia">C28 - NGC 752</a></h3>
+            <div class="designation">NGC 752 &middot; Andromeda</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_5005" target="_blank" rel="noopener" title="Look up C29 - NGC 5005 on Wikipedia">C29 - NGC 5005</a></h3>
+            <div class="designation">NGC 5005 &middot; Canes Venatici</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card captured">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_7331" target="_blank" rel="noopener" title="Look up C30 - NGC 7331 on Wikipedia">C30 - NGC 7331</a></h3>
+            <div class="designation">NGC 7331 &middot; Pegasus</div>
+            <div class="image-container">
+                <img src="targets/galaxies/ngc7331/ngc7331_2026-02-01.png.thumb.webp" loading="lazy" alt="C30 - NGC 7331" onclick="openModal('targets/galaxies/ngc7331/ngc7331_2026-02-01.jpg')">
+            </div>
+            <div class="status">✓ Captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/IC_405" target="_blank" rel="noopener" title="Look up C31 - Flaming Star Nebula on Wikipedia">C31 - Flaming Star Nebula</a></h3>
+            <div class="designation">IC 405 &middot; Auriga</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_4631" target="_blank" rel="noopener" title="Look up C32 - Whale Galaxy on Wikipedia">C32 - Whale Galaxy</a></h3>
+            <div class="designation">NGC 4631 &middot; Canes Venatici</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Veil_Nebula#Components" target="_blank" rel="noopener" title="Look up C33 - East Veil Nebula on Wikipedia">C33 - East Veil Nebula</a></h3>
+            <div class="designation">NGC 6992 &middot; Cygnus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Veil_Nebula#Components" target="_blank" rel="noopener" title="Look up C34 - West Veil Nebula on Wikipedia">C34 - West Veil Nebula</a></h3>
+            <div class="designation">NGC 6960 &middot; Cygnus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_4889" target="_blank" rel="noopener" title="Look up C35 - Coma B on Wikipedia">C35 - Coma B</a></h3>
+            <div class="designation">NGC 4889 &middot; Coma Berenices</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_4559" target="_blank" rel="noopener" title="Look up C36 - NGC 4559 on Wikipedia">C36 - NGC 4559</a></h3>
+            <div class="designation">NGC 4559 &middot; Coma Berenices</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_6885" target="_blank" rel="noopener" title="Look up C37 - NGC 6885 on Wikipedia">C37 - NGC 6885</a></h3>
+            <div class="designation">NGC 6885 &middot; Vulpecula</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_4565" target="_blank" rel="noopener" title="Look up C38 - Needle Galaxy on Wikipedia">C38 - Needle Galaxy</a></h3>
+            <div class="designation">NGC 4565 &middot; Coma Berenices</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Eskimo_Nebula" target="_blank" rel="noopener" title="Look up C39 - Eskimo Nebula, Clown Face Nebula on Wikipedia">C39 - Eskimo Nebula, Clown Face Nebula</a></h3>
+            <div class="designation">NGC 2392 &middot; Gemini</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_3632" target="_blank" rel="noopener" title="Look up C40 - NGC 3626 on Wikipedia">C40 - NGC 3626</a></h3>
+            <div class="designation">NGC 3626 &middot; Leo</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Hyades_(star_cluster)" target="_blank" rel="noopener" title="Look up C41 - Hyades on Wikipedia">C41 - Hyades</a></h3>
+            <div class="designation">Mel 25 &middot; Taurus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_7006" target="_blank" rel="noopener" title="Look up C42 - NGC 7006 on Wikipedia">C42 - NGC 7006</a></h3>
+            <div class="designation">NGC 7006 &middot; Delphinus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_7814" target="_blank" rel="noopener" title="Look up C43 - NGC 7814 on Wikipedia">C43 - NGC 7814</a></h3>
+            <div class="designation">NGC 7814 &middot; Pegasus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_7479" target="_blank" rel="noopener" title="Look up C44 - Superman Galaxy on Wikipedia">C44 - Superman Galaxy</a></h3>
+            <div class="designation">NGC 7479 &middot; Pegasus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_5248" target="_blank" rel="noopener" title="Look up C45 - NGC 5248 on Wikipedia">C45 - NGC 5248</a></h3>
+            <div class="designation">NGC 5248 &middot; Boötes</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_2261" target="_blank" rel="noopener" title="Look up C46 - Hubble's Variable Nebula on Wikipedia">C46 - Hubble's Variable Nebula</a></h3>
+            <div class="designation">NGC 2261 &middot; Monoceros</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_6934" target="_blank" rel="noopener" title="Look up C47 - NGC 6934 on Wikipedia">C47 - NGC 6934</a></h3>
+            <div class="designation">NGC 6934 &middot; Delphinus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_2775" target="_blank" rel="noopener" title="Look up C48 - NGC 2775 on Wikipedia">C48 - NGC 2775</a></h3>
+            <div class="designation">NGC 2775 &middot; Cancer</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Rosette_Nebula" target="_blank" rel="noopener" title="Look up C49 - Rosette Nebula on Wikipedia">C49 - Rosette Nebula</a></h3>
+            <div class="designation">NGC 2237 &middot; Monoceros</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_2244" target="_blank" rel="noopener" title="Look up C50 - Satellite Cluster on Wikipedia">C50 - Satellite Cluster</a></h3>
+            <div class="designation">NGC 2244 &middot; Monoceros</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/IC_1613" target="_blank" rel="noopener" title="Look up C51 - IC 1613 on Wikipedia">C51 - IC 1613</a></h3>
+            <div class="designation">IC 1613 &middot; Cetus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_4697" target="_blank" rel="noopener" title="Look up C52 - NGC 4697 on Wikipedia">C52 - NGC 4697</a></h3>
+            <div class="designation">NGC 4697 &middot; Virgo</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_3115" target="_blank" rel="noopener" title="Look up C53 - Spindle Galaxy on Wikipedia">C53 - Spindle Galaxy</a></h3>
+            <div class="designation">NGC 3115 &middot; Sextans</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_2506" target="_blank" rel="noopener" title="Look up C54 - NGC 2506 on Wikipedia">C54 - NGC 2506</a></h3>
+            <div class="designation">NGC 2506 &middot; Monoceros</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Saturn_Nebula" target="_blank" rel="noopener" title="Look up C55 - Saturn Nebula on Wikipedia">C55 - Saturn Nebula</a></h3>
+            <div class="designation">NGC 7009 &middot; Aquarius</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_246" target="_blank" rel="noopener" title="Look up C56 - Skull Nebula on Wikipedia">C56 - Skull Nebula</a></h3>
+            <div class="designation">NGC 246 &middot; Cetus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_6822" target="_blank" rel="noopener" title="Look up C57 - Barnard's Galaxy on Wikipedia">C57 - Barnard's Galaxy</a></h3>
+            <div class="designation">NGC 6822 &middot; Sagittarius</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_2360" target="_blank" rel="noopener" title="Look up C58 - Caroline's Cluster on Wikipedia">C58 - Caroline's Cluster</a></h3>
+            <div class="designation">NGC 2360 &middot; Canis Major</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_3242" target="_blank" rel="noopener" title="Look up C59 - Ghost of Jupiter on Wikipedia">C59 - Ghost of Jupiter</a></h3>
+            <div class="designation">NGC 3242 &middot; Hydra</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Antennae_Galaxies" target="_blank" rel="noopener" title="Look up C60 - Antennae Galaxies on Wikipedia">C60 - Antennae Galaxies</a></h3>
+            <div class="designation">NGC 4038 &middot; Corvus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Antennae_Galaxies" target="_blank" rel="noopener" title="Look up C61 - Antennae Galaxies on Wikipedia">C61 - Antennae Galaxies</a></h3>
+            <div class="designation">NGC 4039 &middot; Corvus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_247" target="_blank" rel="noopener" title="Look up C62 - NGC 247 on Wikipedia">C62 - NGC 247</a></h3>
+            <div class="designation">NGC 247 &middot; Cetus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Helix_Nebula" target="_blank" rel="noopener" title="Look up C63 - Helix Nebula on Wikipedia">C63 - Helix Nebula</a></h3>
+            <div class="designation">NGC 7293 &middot; Aquarius</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_2362" target="_blank" rel="noopener" title="Look up C64 - Tau Canis Majoris Cluster on Wikipedia">C64 - Tau Canis Majoris Cluster</a></h3>
+            <div class="designation">NGC 2362 &middot; Canis Major</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Sculptor_Galaxy" target="_blank" rel="noopener" title="Look up C65 - Sculptor Galaxy on Wikipedia">C65 - Sculptor Galaxy</a></h3>
+            <div class="designation">NGC 253 &middot; Sculptor</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_5694" target="_blank" rel="noopener" title="Look up C66 - NGC 5694 on Wikipedia">C66 - NGC 5694</a></h3>
+            <div class="designation">NGC 5694 &middot; Hydra</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_1097" target="_blank" rel="noopener" title="Look up C67 - NGC 1097 on Wikipedia">C67 - NGC 1097</a></h3>
+            <div class="designation">NGC 1097 &middot; Fornax</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_6729" target="_blank" rel="noopener" title="Look up C68 - R CrA Nebula on Wikipedia">C68 - R CrA Nebula</a></h3>
+            <div class="designation">NGC 6729 &middot; Corona Australis</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_6302" target="_blank" rel="noopener" title="Look up C69 - Bug Nebula on Wikipedia">C69 - Bug Nebula</a></h3>
+            <div class="designation">NGC 6302 &middot; Scorpius</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_300" target="_blank" rel="noopener" title="Look up C70 - Sculptor Pinwheel Galaxy on Wikipedia">C70 - Sculptor Pinwheel Galaxy</a></h3>
+            <div class="designation">NGC 300 &middot; Sculptor</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_2477" target="_blank" rel="noopener" title="Look up C71 - NGC 2477 on Wikipedia">C71 - NGC 2477</a></h3>
+            <div class="designation">NGC 2477 &middot; Puppis</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_55" target="_blank" rel="noopener" title="Look up C72 - String of Pearls Galaxy on Wikipedia">C72 - String of Pearls Galaxy</a></h3>
+            <div class="designation">NGC 55 &middot; Sculptor</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_1851" target="_blank" rel="noopener" title="Look up C73 - NGC 1851 on Wikipedia">C73 - NGC 1851</a></h3>
+            <div class="designation">NGC 1851 &middot; Columba</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_3132" target="_blank" rel="noopener" title="Look up C74 - Eight Burst Nebula on Wikipedia">C74 - Eight Burst Nebula</a></h3>
+            <div class="designation">NGC 3132 &middot; Vela</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_6124" target="_blank" rel="noopener" title="Look up C75 - NGC 6124 on Wikipedia">C75 - NGC 6124</a></h3>
+            <div class="designation">NGC 6124 &middot; Scorpius</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_6231" target="_blank" rel="noopener" title="Look up C76 - NGC 6231 on Wikipedia">C76 - NGC 6231</a></h3>
+            <div class="designation">NGC 6231 &middot; Scorpius</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Centaurus_A" target="_blank" rel="noopener" title="Look up C77 - Centaurus A on Wikipedia">C77 - Centaurus A</a></h3>
+            <div class="designation">NGC 5128 &middot; Centaurus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_6541" target="_blank" rel="noopener" title="Look up C78 - NGC 6541 on Wikipedia">C78 - NGC 6541</a></h3>
+            <div class="designation">NGC 6541 &middot; Corona Australis</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_3201" target="_blank" rel="noopener" title="Look up C79 - NGC 3201 on Wikipedia">C79 - NGC 3201</a></h3>
+            <div class="designation">NGC 3201 &middot; Vela</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Omega_Centauri" target="_blank" rel="noopener" title="Look up C80 - Omega Centauri on Wikipedia">C80 - Omega Centauri</a></h3>
+            <div class="designation">NGC 5139 &middot; Centaurus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_6352" target="_blank" rel="noopener" title="Look up C81 - NGC 6352 on Wikipedia">C81 - NGC 6352</a></h3>
+            <div class="designation">NGC 6352 &middot; Ara</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_6193" target="_blank" rel="noopener" title="Look up C82 - NGC 6193 on Wikipedia">C82 - NGC 6193</a></h3>
+            <div class="designation">NGC 6193 &middot; Ara</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_4945" target="_blank" rel="noopener" title="Look up C83 - NGC 4945 on Wikipedia">C83 - NGC 4945</a></h3>
+            <div class="designation">NGC 4945 &middot; Centaurus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_5286" target="_blank" rel="noopener" title="Look up C84 - NGC 5286 on Wikipedia">C84 - NGC 5286</a></h3>
+            <div class="designation">NGC 5286 &middot; Centaurus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/IC_2391" target="_blank" rel="noopener" title="Look up C85 - Omicron Velorum Cluster on Wikipedia">C85 - Omicron Velorum Cluster</a></h3>
+            <div class="designation">IC 2391 &middot; Vela</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_6397" target="_blank" rel="noopener" title="Look up C86 - NGC 6397 on Wikipedia">C86 - NGC 6397</a></h3>
+            <div class="designation">NGC 6397 &middot; Ara</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_1261" target="_blank" rel="noopener" title="Look up C87 - NGC 1261 on Wikipedia">C87 - NGC 1261</a></h3>
+            <div class="designation">NGC 1261 &middot; Horologium</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_5823" target="_blank" rel="noopener" title="Look up C88 - NGC 5823 on Wikipedia">C88 - NGC 5823</a></h3>
+            <div class="designation">NGC 5823 &middot; Circinus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_6087" target="_blank" rel="noopener" title="Look up C89 - S Normae Cluster on Wikipedia">C89 - S Normae Cluster</a></h3>
+            <div class="designation">NGC 6087 &middot; Norma</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_2867" target="_blank" rel="noopener" title="Look up C90 - NGC 2867 on Wikipedia">C90 - NGC 2867</a></h3>
+            <div class="designation">NGC 2867 &middot; Carina</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_3532" target="_blank" rel="noopener" title="Look up C91 - Wishing Well Cluster on Wikipedia">C91 - Wishing Well Cluster</a></h3>
+            <div class="designation">NGC 3532 &middot; Carina</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Carina_Nebula" target="_blank" rel="noopener" title="Look up C92 - Eta Carinae Nebula on Wikipedia">C92 - Eta Carinae Nebula</a></h3>
+            <div class="designation">NGC 3372 &middot; Carina</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_6752" target="_blank" rel="noopener" title="Look up C93 - Great Peacock Globular on Wikipedia">C93 - Great Peacock Globular</a></h3>
+            <div class="designation">NGC 6752 &middot; Pavo</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Jewel_Box_(star_cluster)" target="_blank" rel="noopener" title="Look up C94 - Jewel Box on Wikipedia">C94 - Jewel Box</a></h3>
+            <div class="designation">NGC 4755 &middot; Crux</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_6025" target="_blank" rel="noopener" title="Look up C95 - NGC 6025 on Wikipedia">C95 - NGC 6025</a></h3>
+            <div class="designation">NGC 6025 &middot; Triangulum Australe</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_2516" target="_blank" rel="noopener" title="Look up C96 - Southern Beehive Cluster on Wikipedia">C96 - Southern Beehive Cluster</a></h3>
+            <div class="designation">NGC 2516 &middot; Carina</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_3766" target="_blank" rel="noopener" title="Look up C97 - Pearl Cluster on Wikipedia">C97 - Pearl Cluster</a></h3>
+            <div class="designation">NGC 3766 &middot; Centaurus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_4609" target="_blank" rel="noopener" title="Look up C98 - NGC 4609 on Wikipedia">C98 - NGC 4609</a></h3>
+            <div class="designation">NGC 4609 &middot; Crux</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Coalsack_Nebula" target="_blank" rel="noopener" title="Look up C99 - Coalsack Nebula on Wikipedia">C99 - Coalsack Nebula</a></h3>
+            <div class="designation">— &middot; Crux</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/IC_2944" target="_blank" rel="noopener" title="Look up C100 - Lambda Centauri Nebula on Wikipedia">C100 - Lambda Centauri Nebula</a></h3>
+            <div class="designation">IC 2944 &middot; Centaurus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_6744" target="_blank" rel="noopener" title="Look up C101 - NGC 6744 on Wikipedia">C101 - NGC 6744</a></h3>
+            <div class="designation">NGC 6744 &middot; Pavo</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/IC_2602" target="_blank" rel="noopener" title="Look up C102 - Theta Car Cluster on Wikipedia">C102 - Theta Car Cluster</a></h3>
+            <div class="designation">IC 2602 &middot; Carina</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/Tarantula_Nebula" target="_blank" rel="noopener" title="Look up C103 - Tarantula Nebula on Wikipedia">C103 - Tarantula Nebula</a></h3>
+            <div class="designation">NGC 2070 &middot; Dorado</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_362" target="_blank" rel="noopener" title="Look up C104 - NGC 362 on Wikipedia">C104 - NGC 362</a></h3>
+            <div class="designation">NGC 362 &middot; Tucana</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_4833" target="_blank" rel="noopener" title="Look up C105 - NGC 4833 on Wikipedia">C105 - NGC 4833</a></h3>
+            <div class="designation">NGC 4833 &middot; Musca</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/47_Tucanae" target="_blank" rel="noopener" title="Look up C106 - 47 Tucanae on Wikipedia">C106 - 47 Tucanae</a></h3>
+            <div class="designation">NGC 104 &middot; Tucana</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_6101" target="_blank" rel="noopener" title="Look up C107 - NGC 6101 on Wikipedia">C107 - NGC 6101</a></h3>
+            <div class="designation">NGC 6101 &middot; Apus</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_4372" target="_blank" rel="noopener" title="Look up C108 - NGC 4372 on Wikipedia">C108 - NGC 4372</a></h3>
+            <div class="designation">NGC 4372 &middot; Musca</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+        <div class="caldwell-card">
+            <h3><a class="wiki-link" href="https://en.wikipedia.org/wiki/NGC_3195" target="_blank" rel="noopener" title="Look up C109 - NGC 3195 on Wikipedia">C109 - NGC 3195</a></h3>
+            <div class="designation">NGC 3195 &middot; Chamaeleon</div>
+            <div class="image-container">
+                <div class="placeholder">?</div>
+            </div>
+            <div class="status not-captured">Not yet captured</div>
+        </div>
+    </div>
+
+    <!-- Modal for full-size image viewing -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script>
+        function filterGallery() {
+            const filter = document.getElementById('filterInput').value.toLowerCase();
+            const cards = document.querySelectorAll('.caldwell-card');
+
+            cards.forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const desig = card.querySelector('.designation').textContent.toLowerCase();
+                if (title.includes(filter) || desig.includes(filter)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function openModal(imagePath) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.classList.add('active');
+            modalImg.src = imagePath;
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+        }
+
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
