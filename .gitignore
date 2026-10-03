@@ -18,3 +18,12 @@ Thumbs.db
 
 # Temporary files
 *.tmp
+
+# Astro data never goes in the repo (raw frames live in ~/astro/sessions and targets)
+*.fit
+*.fits
+*.fit.gz
+*.xisf
+*.bak*
+*.log
+tools/__pycache__/
