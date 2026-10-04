@@ -13,6 +13,7 @@ Images are matched to Caldwell numbers two ways:
 import json
 import re
 from pathlib import Path
+from gallery_excludes import is_excluded
 from urllib.parse import quote
 
 from wikipedia_links import caldwell_url, anchor
@@ -62,6 +63,8 @@ def find_caldwell_images(reverse):
         if '_thn' in img.name or '.thumb.' in img.name or 'lights' in str(img):
             continue
         if not img.exists():                      # skip broken symlinks
+            continue
+        if is_excluded(img):
             continue
         parts = img.parts
         if len(parts) < 3:

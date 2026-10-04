@@ -2,6 +2,7 @@
 import os
 import re
 from pathlib import Path
+from gallery_excludes import is_excluded
 from urllib.parse import quote
 from wikipedia_links import object_url, anchor
 
@@ -25,6 +26,8 @@ def find_all_target_images():
         # Get all target directories
         for target_dir in sorted(category_path.iterdir()):
             if not target_dir.is_dir():
+                continue
+            if is_excluded(target_dir):
                 continue
 
             target_name = target_dir.name

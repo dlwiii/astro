@@ -2,6 +2,7 @@
 import os
 import re
 from pathlib import Path
+from gallery_excludes import is_excluded
 from urllib.parse import quote
 from wikipedia_links import messier_url, anchor
 
@@ -10,7 +11,7 @@ def find_messier_images():
     messier_images = {}
 
     # Priority 1: Look for final processed PNG files (M##_YYYY-MM-DD.png or M##.png)
-    all_pngs = list(Path('targets').rglob('M*.png')) + list(Path('targets').rglob('m*.png'))
+    all_pngs = [p for p in list(Path('targets').rglob('M*.png')) + list(Path('targets').rglob('m*.png')) if not is_excluded(p)]
     for png in all_pngs:
         # Try to match dated pattern first: M31_2026-01-30.png
         match = re.search(r'M(\d{1,3})_(\d{4}-\d{2}-\d{2})\.png$', str(png), re.IGNORECASE)
@@ -40,7 +41,7 @@ def find_messier_images():
                     messier_images[m_num] = (str(png), '0000-00-00', 'png')
 
     # Priority 2: Dated JPG files (m##_YYYY-MM-DD.jpg or m##_YYYY-MM-DD[a-z].jpg)
-    for jpg in list(Path('targets').rglob('m*.jpg')):
+    for jpg in [p for p in Path('targets').rglob('m*.jpg') if not is_excluded(p)]:
         if '_thn.jpg' in str(jpg):
             continue
         match = re.search(r'm(\d{1,3})_(\d{4}-\d{2}-\d{2})([a-z]?)\.jpg$', str(jpg), re.IGNORECASE)
@@ -66,7 +67,7 @@ def find_messier_images():
                     messier_images[m_num] = (str(jpg), date_str, 'jpg_dated', suffix)
 
     # Priority 3: Fallback to stacked JPG images (only if no PNG or dated JPG exists)
-    for jpg in Path('targets').rglob('Stacked_*M*.jpg'):
+    for jpg in [p for p in Path('targets').rglob('Stacked_*M*.jpg') if not is_excluded(p)]:
         if '_thn.jpg' in str(jpg):
             continue
 
